@@ -34,7 +34,7 @@ class AuthController extends Controller
             // Redirect berdasarkan role (opsional)
             switch ($user->role) {
                 case 'admin':
-                    return "selamat datang admiin";
+                    return view('admin.layouts.app');
                 case 'worker':
                     return redirect('/worker/home');
                 case 'customer':
