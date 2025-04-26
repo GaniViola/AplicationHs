@@ -61,14 +61,16 @@
                         <td>Rp {{ number_format($service->price, 0, ',', '.') }}</td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm mb-1" data-toggle="modal" data-target="#editServiceModal{{ $service->id }}">
-                                Edit
+                                <i class="fas fa-edit"></i> Edit
                             </button>
-
+                            
                             <form action="{{ route('services.destroy', $service->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Yakin mau hapus layanan ini?')">Hapus</button>
-                            </form>
+                                <button type="submit" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Yakin mau hapus layanan ini?')">
+                                    <i class="fas fa-trash-alt"></i> Hapus
+                                </button>
+                            </form>                            
                         </td>
                     </tr>
                     @endforeach
