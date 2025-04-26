@@ -29,17 +29,18 @@
 
     <!-- Nav Item - Pesanan Masuk -->
     <li class="nav-item">
-        <a class="nav-link" href="orders.html">
+        <a class="nav-link" href="/pesanan">
             <i class="fas fa-fw fa-box"></i>
             <span>Pesanan Masuk</span>
         </a>
     </li>
 
+
     <!-- Nav Item - Data Teknisi -->
     <li class="nav-item">
         <a class="nav-link" href="technicians.html">
             <i class="fas fa-fw fa-user-cog"></i>
-            <span>Data Teknisi</span>
+            <span>Data Pekerja</span>
         </a>
     </li>
 

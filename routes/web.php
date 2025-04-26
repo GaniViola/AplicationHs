@@ -17,3 +17,6 @@ Route::get('/dashboard', function() {
 });
 
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/pesanan', function() {
+    return view('admin.pages.PesananMasuk');
+});
