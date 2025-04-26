@@ -99,11 +99,15 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
-    <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>HomeService Admin</strong> - Platform manajemen layanan rumah tangga</p>
-        <a class="btn btn-success btn-sm" href="https://example.com/upgrade">Upgrade to Pro!</a>
-    </div>
-
+<!-- Sidebar Card - Modern Gradient -->
+<div class="sidebar-card d-none d-lg-flex flex-column align-items-center p-4 shadow-sm rounded bg-gradient-primary text-white">
+    <img class="sidebar-card-illustration mb-3" src="https://static.vecteezy.com/system/resources/previews/004/695/389/original/flat-illustration-of-rocket-used-for-print-app-web-advertising-etc-free-vector.jpg" alt="Rocket" style="width: 80px;">
+    <h6 class="font-weight-bold text-center mb-2">HomeService Admin</h6>
+    <p class="text-center mb-3" style="font-size: 14px;">
+        Platform manajemen layanan rumah Anda.
+    </p>
+    <a class="btn btn-light btn-sm text-primary font-weight-bold" href="https://example.com/upgrade" target="_blank">
+        <i class="fas fa-rocket mr-1"></i> Trusted App
+    </a>
+</div>
 </ul>
