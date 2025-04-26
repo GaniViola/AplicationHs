@@ -12,7 +12,7 @@ class AuthController extends Controller
     // Tampilkan halaman login
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('admin.login.index');
     }
 
     // Proses login
@@ -20,34 +20,38 @@ class AuthController extends Controller
     {
         // Validasi input
         $credentials = $request->validate([
-            'username' => ['required'],
-            'password' => ['required'],
+            'email' => 'required|email:rcf,dns',
+            'password' => 'required',
         ]);
 
-        // Cari user berdasarkan username
-        $user = User::where('username', $credentials['username'])->first();
-
-        // Cek user dan password
-        if ($user && Hash::check($credentials['password'], $user->password)) {
-            Auth::login($user);
-
-            // Redirect berdasarkan role (opsional)
-            switch ($user->role) {
-                case 'admin':
-                    return view('admin.layouts.app');
-                case 'worker':
-                    return redirect('/worker/home');
-                case 'customer':
-                    return redirect('/customer/home');
-                default:
-                    return redirect('/');
-            }
+        if(Auth::attempt($credentials)) {
+            
+            return redirect()->intended('/dashboard');
+            
         }
 
+        // Cari user berdasarkan username
+        // $user = User::where('username', $credentials['username'])->first();
+
+        // Cek user dan password
+        // if ($user && Hash::check($credentials['password'], $user->password)) {
+        //     Auth::login($user);
+
+        //     // Redirect berdasarkan role (opsional)
+        //     switch ($user->role) {
+        //         case 'admin':
+        //             return view('admin.layouts.app');
+        //         case 'worker':
+        //             return redirect('/worker/home');
+        //         case 'customer':
+        //             return redirect('/customer/home');
+        //         default:
+        //             return redirect('/');
+        //     }
+        // }
+
         // Kalau gagal login
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ])->withInput();
+        return back()->with('loginError', 'Username atau password salah');
     }
 
     // Logout
