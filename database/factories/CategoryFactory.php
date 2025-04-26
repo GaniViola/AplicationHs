@@ -20,7 +20,6 @@ class CategoryFactory extends Factory
         $name = $this->faker->unique()->words(2, true); // generate nama category
         return [
             'name' => $name,
-            'slug' => Str::slug($name),
             'description' => $this->faker->sentence(),
         ];
     }

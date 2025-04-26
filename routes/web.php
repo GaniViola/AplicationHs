@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ServicesController;
 
 Route::get('/', function () {
     return view('pages.home');
@@ -17,6 +18,12 @@ Route::get('/dashboard', function() {
 });
 
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::post('/categories', [CategoryController::class, 'store']);
+Route::put('/categories/{id}', [CategoryController::class, 'update']);
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+Route::resource('/services', ServicesController::class);
 Route::get('/pesanan', function() {
     return view('admin.pages.PesananMasuk');
+
+    
 });

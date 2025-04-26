@@ -12,7 +12,6 @@ class Category extends Model
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
         'name',
-        'slug',
         'description'
     ];
 

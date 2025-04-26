@@ -23,7 +23,6 @@ class ServiceFactory extends Factory
         return [
             'category_id' => mt_rand(1, 5), // otomatis buat category kalau belum ada
             'name' => $name,
-            'slug' => Str::slug($name),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 100, 1000), // harga antara 100 - 1000
             'image' => $this->faker->imageUrl(640, 480, 'business', true), // contoh image URL
