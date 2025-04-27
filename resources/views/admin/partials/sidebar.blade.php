@@ -69,7 +69,7 @@
 
     <!-- Nav Item - Master User -->
     <li class="nav-item">
-        <a class="nav-link" href="/master-user">
+        <a class="nav-link" href="/DataCustomer">
             <i class="fas fa-fw fa-users"></i>
             <span>Master User</span>
         </a>

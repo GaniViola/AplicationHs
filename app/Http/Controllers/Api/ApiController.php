@@ -38,38 +38,36 @@ class ApiController extends Controller
     }
 
     // 🔓 LOGIN
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required'
-        ]);
+   // 🔓 LOGIN
+public function login(Request $request)
+{
+    $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required'
+    ]);
 
-        $user = User::where('email', $request->email)->first();
+    $user = User::where('email', $request->email)->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Email atau password salah.'],
-            ]);
-        }
-
-        // Buat token baru
-        $token = $user->createToken('api-token')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Login berhasil!',
-            'token'   => $token,
-            'user'    => $user
+    if (! $user || ! Hash::check($request->password, $user->password)) {
+        throw ValidationException::withMessages([
+            'email' => ['Email atau password salah.'],
         ]);
     }
 
-    // 🔒 LOGOUT
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-
-        return response()->json([
-            'message' => 'Logout berhasil!'
+    // 🚫 Cek status user
+    if ($user->status === 'blokir') {
+        throw ValidationException::withMessages([
+            'email' => ['Akun anda telah diblokir. Silakan hubungi admin.'],
         ]);
     }
+
+    // ✅ Buat token baru
+    $token = $user->createToken('api-token')->plainTextToken;
+
+    return response()->json([
+        'message' => 'Login berhasil!',
+        'token'   => $token,
+        'user'    => $user
+    ]);
+}
 }
