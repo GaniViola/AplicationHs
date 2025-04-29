@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ServiceController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +21,10 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/categories', [CategoryController::class, 'index']);
+
+
+Route::get('/services', [ServiceController::class, 'index']);
+Route::post('/orders', [OrderController::class, 'store']);
+
+Route::get('/orders', [OrderController::class, 'history']);
+Route::get('/orders/user/{id}', [OrderController::class, 'getUserOrders']);
