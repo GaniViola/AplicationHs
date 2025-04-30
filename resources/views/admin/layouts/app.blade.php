@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
     <title>Home Service - Dashboard</title>
 
@@ -19,6 +20,15 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <style>
+        .badge.bg-warning,
+        .badge.bg-info,
+        .badge.bg-primary,
+        .badge.bg-secondary,
+        .badge.bg-success {
+            color: white !important; /* Pastikan teks jadi putih */
+        }
+    </style>    
 
 </head>
 

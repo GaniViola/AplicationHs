@@ -29,7 +29,7 @@
 
     <!-- Nav Item - Pesanan Masuk -->
     <li class="nav-item">
-        <a class="nav-link" href="/pesanan">
+        <a class="nav-link" href="/orders">
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Pesanan Masuk</span>
         </a>
