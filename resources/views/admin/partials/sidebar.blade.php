@@ -59,6 +59,13 @@
         Pengguna
     </div>
 
+    <li class="nav-item">
+        <a class="nav-link" href="/CreateAccount">
+            <i class="fas fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Master Pekerja -->
     <li class="nav-item">
         <a class="nav-link" href="/DataPekerja">

@@ -33,10 +33,13 @@ Route::middleware('auth')->group(function(){
     Route::patch('/DataCustomer/{id}/block', [UserController::class, 'blockCustomer'])->name('admin.customers.block');
     Route::patch('/DataCustomer/{id}/activate', [UserController::class, 'activateCustomer'])->name('admin.customers.activate');
     Route::post('/DataCustomer/bulk-action', [UserController::class, 'bulkAction'])->name('admin.customers.bulk');
-    
+
+    // Create Account
+    Route::get('/CreateAccount', [UserController::class, 'index']);
+    Route::post('/CreateAccount', [UserController::class, 'CreateAccount']);
+
     Route::get('/pesanan', function() {
         return view('admin.pages.PesananMasuk');
-    
         
     });
 });
