@@ -33,6 +33,13 @@ class UserController extends Controller
 
         return back()->with('createsuccess', 'Registration successful! please login');
     }
+
+    // User Master
+    public function ShowUserMaster() {
+        return view('admin.pages.UserMaster', [
+            'users' => User::all()
+        ]);
+    }
     
     // Menampilkan daftar customer
     public function customers(Request $request)

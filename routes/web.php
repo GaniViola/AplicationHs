@@ -20,13 +20,16 @@ Route::middleware('auth')->group(function(){
     Route::get('/dashboard', function() {
         return view('admin.pages.home');
     });
+
     //category
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+
     //service
     Route::resource('/services', ServicesController::class);
+
     //manajemen user
     // Customers
     Route::get('/DataCustomer', [UserController::class, 'customers'])->name('admin.customers');
@@ -34,14 +37,14 @@ Route::middleware('auth')->group(function(){
     Route::patch('/DataCustomer/{id}/activate', [UserController::class, 'activateCustomer'])->name('admin.customers.activate');
     Route::post('/DataCustomer/bulk-action', [UserController::class, 'bulkAction'])->name('admin.customers.bulk');
 
-<<<<<<< HEAD
     // Create Account
     Route::get('/CreateAccount', [UserController::class, 'index']);
     Route::post('/CreateAccount', [UserController::class, 'CreateAccount']);
 
     Route::get('/pesanan', function() {
         return view('admin.pages.PesananMasuk');
-=======
+    });
+
     //pesanan masuk
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
@@ -50,12 +53,11 @@ Route::middleware('auth')->group(function(){
     Route::post('/orders/{order}/ready-payment', [App\Http\Controllers\OrderController::class, 'readyForPayment'])->name('orders.readyPayment');
     Route::post('/orders/{order}/reject', [App\Http\Controllers\OrderController::class, 'reject'])->name('orders.reject');
     Route::get('/orders/{order}/details', [App\Http\Controllers\OrderController::class, 'getOrderDetails'])->name('orders.details');
-});
-    
-    // Route::get('/pesanan', function() {
-    //     return view('admin.pages.PesananMasuk');
-    
->>>>>>> d368e6b99989a5ecaca7fc3e929b6bf659436a33
-        
-    // });
 
+    Route::get('/pesanan', function() {
+        return view('admin.pages.PesananMasuk');
+    });
+
+    Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
+
+});
