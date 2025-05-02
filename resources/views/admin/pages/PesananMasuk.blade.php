@@ -74,78 +74,111 @@
                     </thead>
                     <tbody>
                         @forelse($orders as $key => $order)
-                            <tr>
-                                <td>{{ $orders->firstItem() + $key }}</td>
-                                <td>{{ $order->user->username }}</td>
-                                <td>
-                                    @foreach($order->orderDetails as $detail)
-                                        {{ $detail->service->name }}{{ !$loop->last ? ', ' : '' }}
-                                    @endforeach
-                                </td>
-                                <td>{{ \Carbon\Carbon::parse($order->tanggal_pemesanan)->format('d M Y') }}</td>
-                                <td>
+                        <tr>
+                            <td>{{ $orders->firstItem() + $key }}</td>
+                            <td>{{ $order->user->username }}</td>
+                            <td>
+                                @foreach($order->orderDetails as $detail)
+                                    {{ $detail->service->name }}{{ !$loop->last ? ', ' : '' }}
+                                @endforeach
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($order->tanggal_pemesanan)->format('d M Y') }}</td>
+                            <td>
+                                @if($order->status == 'pending')
+                                    <span class="badge bg-warning">Pending</span>
+                                @elseif($order->status == 'proses')
+                                    <span class="badge bg-info">Proses</span>
+                                @elseif($order->status == 'selesai_pengerjaan')
+                                    <span class="badge bg-primary">Selesai Pengerjaan</span>
+                                @elseif($order->status == 'pending_setoran')
+                                    <span class="badge bg-secondary">Pending Setoran</span>
+                                @elseif($order->status == 'selesai')
+                                    <span class="badge bg-success">Selesai</span>
+                                @endif
+                            </td>
+                            <td>Rp {{ number_format($order->orderDetails->sum('subtotal'), 0, ',', '.') }}</td>
+                            <td>
+                                <div class="btn-group mb-2" role="group">
+                                    <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-info">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </a>
                                     @if($order->status == 'pending')
-                                        <span class="badge bg-warning">Pending</span>
-                                    @elseif($order->status == 'proses')
-                                        <span class="badge bg-info">Proses</span>
-                                    @elseif($order->status == 'selesai_pengerjaan')
-                                        <span class="badge bg-primary">Selesai Pengerjaan</span>
-                                    @elseif($order->status == 'pending_setoran')
-                                        <span class="badge bg-secondary">Pending Setoran</span>
-                                    @elseif($order->status == 'selesai')
-                                        <span class="badge bg-success">Selesai</span>
+                                    <!-- Form untuk memilih pekerja -->
+                                    @if(!$order->worker_id)
+                                    <form action="{{ route('orders.assignWorker', $order->id) }}" method="POST" class="d-flex">
+                                            @csrf
+                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                            <select name="worker_id" class="form-select form-select-sm me-2" required>
+                                                <option value="">Pilih Pekerja</option>
+                                                @foreach($workers as $worker)
+                                                    <option value="{{ $worker->id }}">
+                                                        {{ $worker->username }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">Set</button>
+                                        </form>
+                                    @else
+                                        <!-- Jika pekerja sudah dipilih -->
+                                        <form action="{{ route('orders.accept', $order->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-success">Terima</button>
+                                        </form>
                                     @endif
-                                </td>
-                                <td>
-                                    Rp {{ number_format($order->orderDetails->sum('subtotal'), 0, ',', '.') }}
-                                </td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-info">
-                                            <i class="fas fa-eye"></i> Lihat
-                                        </a>
-                                        
-                                        @if($order->status == 'pending')
-                                            <button type="button" class="btn btn-sm btn-success" onclick="document.getElementById('accept-form-{{ $order->id }}').submit()">
-                                                <i class="fas fa-check"></i> Terima
-                                            </button>
-                                            <form id="accept-form-{{ $order->id }}" action="{{ route('orders.accept', $order->id) }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                            
-                                            <button type="button" class="btn btn-sm btn-danger" onclick="document.getElementById('reject-form-{{ $order->id }}').submit()">
-                                                <i class="fas fa-times"></i> Tolak
-                                            </button>
-                                            <form id="reject-form-{{ $order->id }}" action="{{ route('orders.reject', $order->id) }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        @endif
-                                        
-                                        @if($order->status == 'proses')
-                                            <button type="button" class="btn btn-sm btn-primary" onclick="document.getElementById('complete-form-{{ $order->id }}').submit()">
-                                                <i class="fas fa-check-double"></i> Selesai
-                                            </button>
-                                            <form id="complete-form-{{ $order->id }}" action="{{ route('orders.complete', $order->id) }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        @endif
-                                        
-                                        @if($order->status == 'selesai_pengerjaan')
-                                            <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('ready-payment-form-{{ $order->id }}').submit()">
-                                                <i class="fas fa-money-bill"></i> Siap Bayar
-                                            </button>
-                                            <form id="ready-payment-form-{{ $order->id }}" action="{{ route('orders.readyPayment', $order->id) }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
+                                @endif
+                                
+                                <!-- Untuk aksi menolak -->
+                                @if($order->status == 'pending')
+                                    <form action="{{ route('orders.reject', $order->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger">Tolak</button>
+                                    </form>
+                                @endif
+                                
+                            
+                                    @if($order->status == 'proses')
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="document.getElementById('complete-form-{{ $order->id }}').submit()">
+                                            <i class="fas fa-check-double"></i> Selesai
+                                        </button>
+                                        <form id="complete-form-{{ $order->id }}" action="{{ route('orders.complete', $order->id) }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    @endif
+                            
+                                    @if($order->status == 'selesai_pengerjaan')
+                                        <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('ready-payment-form-{{ $order->id }}').submit()">
+                                            <i class="fas fa-money-bill"></i> Siap Bayar
+                                        </button>
+                                        <form id="ready-payment-form-{{ $order->id }}" action="{{ route('orders.readyPayment', $order->id) }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    @endif
+                                </div>
+                            
+                                {{-- Assign Worker --}}
+                                @if($order->status == 'proses' && !$order->worker_id)
+                                    <form action="{{ route('orders.assignWorker', $order->id) }}" method="POST" class="d-flex">
+                                        @csrf
+                                        <select name="worker_id" class="form-select form-select-sm me-2" required>
+                                            <option value="">Pilih Pekerja</option>
+                                            @foreach($workers as $worker)
+                                                <option value="{{ $worker->id }}" {{ $order->worker_id == $worker->id ? 'selected' : '' }}>
+                                                    {{ $worker->username }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Set</button>
+                                    </form>
+                                @endif
+                            </td>
+                            
+                        </tr>
                         @empty
-                            <tr>
-                                <td colspan="7" class="text-center">Tidak ada pesanan</td>
-                            </tr>
+                        <tr>
+                            <td colspan="7" class="text-center">Tidak ada pesanan</td>
+                        </tr>
                         @endforelse
+                        
                     </tbody>
                 </table>
             </div>

@@ -22,34 +22,37 @@ class OrderController extends Controller
         $ordersQuery = Orders::with(['user', 'orderDetails.service'])
             ->select('orders.*')
             ->join('users', 'orders.user_id', '=', 'users.id');
-
+    
         // Apply filters if present
         if ($request->has('date')) {
             $date = $request->date;
             $ordersQuery->whereDate('tanggal_pemesanan', $date);
         }
-
+    
         if ($request->has('service_id')) {
             $serviceId = $request->service_id;
             $ordersQuery->whereHas('orderDetails', function ($query) use ($serviceId) {
                 $query->where('service_id', $serviceId);
             });
         }
-
+    
         if ($request->has('status')) {
             $status = $request->status;
             $ordersQuery->where('orders.status', $status);
         }
-
+    
         // Get paginated orders
         $orders = $ordersQuery->orderBy('tanggal_pemesanan', 'desc')->paginate(10);
-
+    
         // Get all services for filter dropdown
         $services = Service::all();
-
-        return view('admin.pages.PesananMasuk', compact('orders', 'services'));
+    
+        // Get all workers for assignment dropdown
+        $workers = User::where('role', 'worker')->get(); // ✅ Tambahan ini
+    
+        return view('admin.pages.PesananMasuk', compact('orders', 'services', 'workers'));
     }
-
+    
     /**
      * Show order details
      *
@@ -71,12 +74,18 @@ class OrderController extends Controller
    /**
  * Update order status to proses (accepted)
  */
-public function accept(Orders $order)
+public function accept($id)
 {
+    $order = Orders::findOrFail($id);
+
+    if (!$order->worker_id) {
+        return redirect()->back()->with('error', 'Pilih pekerja terlebih dahulu sebelum menerima pesanan.');
+    }
+
     $order->status = 'proses';
     $order->save();
 
-    return redirect()->route('orders.index')->with('success', 'Pesanan berhasil diterima dan diproses');
+    return redirect()->route('orders.index')->with('success', 'Pesanan telah diterima.');
 }
 
 /**
@@ -128,4 +137,25 @@ public function reject(Orders $order)
             'total' => $order->orderDetails->sum('subtotal')
         ]);
     }
+    public function assignWorker(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'order_id' => 'required|exists:orders,id', // Memastikan order_id ada dalam tabel orders
+            'worker_id' => 'required|exists:users,id', // Memastikan worker_id ada dalam tabel users
+        ]);
+
+        // Mengambil pesanan yang dipilih
+        $order = Orders::findOrFail($request->order_id);
+        
+        // Menugaskan pekerja ke pesanan
+        $order->worker_id = $request->worker_id; // Menyimpan pekerja yang dipilih pada pesanan
+        $order->status = 'proses'; // Mengubah status pesanan menjadi 'proses'
+        $order->save(); // Menyimpan perubahan di database
+
+        // Redirect kembali ke halaman manajemen pesanan dengan pesan sukses
+        return redirect()->route('orders.index')->with('success', 'Tukang berhasil ditugaskan ke pesanan.');
+    }
+
+
 }
