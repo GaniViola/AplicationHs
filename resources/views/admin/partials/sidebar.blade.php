@@ -68,9 +68,9 @@
 
     <!-- Nav Item - Master Pekerja -->
     <li class="nav-item">
-        <a class="nav-link" href="/DataPekerja">
+        <a class="nav-link" href="/UserMaster">
             <i class="fas fa-fw fa-user-cog"></i>
-            <span>Master Pekerja</span>
+            <span>User Master</span>
         </a>
     </li>
 

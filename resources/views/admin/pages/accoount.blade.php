@@ -61,7 +61,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputState" class="form-label">User Role</label>
-                <select id="inputState" class="form-select" name="role">
+                <select id="inputState" class="form-select @error('role') is-invalid @enderror" name="role">
                   <option selected>Choose Role...</option>
                   <option value="admin">Admin</option>
                   <option value="worker">Worker</option>
