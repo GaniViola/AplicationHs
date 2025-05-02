@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
     //service
     Route::resource('/services', ServicesController::class);
 
+
     //manajemen user
     // Customers
     Route::get('/DataCustomer', [UserController::class, 'customers'])->name('admin.customers');
@@ -43,24 +44,21 @@ Route::middleware('auth')->group(function(){
     Route::get('/CreateAccount', [UserController::class, 'index']);
     Route::post('/CreateAccount', [UserController::class, 'CreateAccount']);
 
-    Route::get('/pesanan', function() {
-        return view('admin.pages.PesananMasuk');
-
-    //pesanan masuk
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-    Route::post('/orders/{order}/accept', [OrderController::class, 'accept'])->name('orders.accept');
-    Route::post('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
-    Route::post('/orders/{order}/ready-payment', [OrderController::class, 'readyForPayment'])->name('orders.readyPayment');
-    Route::post('/orders/{order}/reject', [OrderController::class, 'reject'])->name('orders.reject');
-    Route::get('/orders/{order}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
-});
-    
+     //pesanan masuk
+     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+     Route::post('/orders/{order}/accept', [OrderController::class, 'accept'])->name('orders.accept');
+     Route::post('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
+     Route::post('/orders/{order}/ready-payment', [OrderController::class, 'readyForPayment'])->name('orders.readyPayment');
+     Route::post('/orders/{order}/reject', [OrderController::class, 'reject'])->name('orders.reject');
+     Route::get('/orders/{order}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
     // Route::get('/pesanan', function() {
     //     return view('admin.pages.PesananMasuk');
     
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
-        
-    // });
-
+   
 });
+    
+        
+   
+
