@@ -18,6 +18,8 @@ Route::post('/register', [ApiController::class, 'register']);
 Route::post('login', [ApiController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
 Route::post('/logout', [ApiController::class, 'logout']);
+Route::post('/change-password', [AuthController::class, 'changePassword']);
+
 
 });
 
