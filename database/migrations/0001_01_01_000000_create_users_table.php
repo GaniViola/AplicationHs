@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('address')->nullable();
             $table->string('phone');
-            $table->string('pictur')->nullable();
+            $table->string('photo')->nullable();
             $table->enum('role', ['admin', 'worker', 'customer'])->default('customer');
+            $table->enum('status', ['aktif', 'blokir'])->default('aktif');
+            $table->string('otp')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
         });

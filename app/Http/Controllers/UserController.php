@@ -7,6 +7,40 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function index() {
+        return view('admin.pages.accoount');
+    }
+
+    // Create account
+    public function CreateAccount(Request $request) {
+
+        $validated = $request->validate([
+            'username' => 'required|string|max:255',
+            'email'    => 'required|email:rfc,dns|unique:users,email',
+            'address'  => 'required|string|max:255',
+            'phone'    => 'required|string|max:20',
+            'password' => 'required|string|min:6',
+            'photo'    => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'role'     => 'required|in:admin,worker'
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $validated['photo'] = $request->file('photo')->store('services', 'public');
+        }
+
+        User::create($validated);
+
+        return back()->with('createsuccess', 'Registration successful! please login');
+    }
+
+    // User Master
+    public function ShowUserMaster() {
+        return view('admin.pages.UserMaster', [
+            'users' => User::all()
+        ]);
+    }
+    
     // Menampilkan daftar customer
     public function customers(Request $request)
     {
@@ -64,4 +98,6 @@ class UserController extends Controller
         // Perbaikan - redirect ke nama route yang benar
         return redirect()->route('admin.customers')->with('success', $message);
     }
+
+    
 }

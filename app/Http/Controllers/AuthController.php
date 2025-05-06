@@ -25,9 +25,8 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($credentials)) {
-            
+            $request->session()->regenerate();
             return redirect()->intended('/dashboard');
-            
         }
 
         // Cari user berdasarkan username
@@ -55,9 +54,15 @@ class AuthController extends Controller
     }
 
     // Logout
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('/secure-area/login');
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
+
 }
