@@ -11,7 +11,7 @@ Route::middleware('guest')->group(function(){
     Route::get('/', function () {
         return view('pages.home');
     });
-    
+
     Route::get('/secure-area/login', [AuthController::class, 'showLoginForm']);
     Route::post('/secure-area/login', [AuthController::class, 'login'])->name('login');
 });
@@ -53,11 +53,11 @@ Route::middleware('auth')->group(function(){
      Route::post('/orders/assign-worker', [OrderController::class, 'assignWorker'])->name('orders.assignWorker');
     // Route::get('/pesanan', function() {
     //     return view('admin.pages.PesananMasuk');
-    
+
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
-   
+
 });
-    
-        
-   
+
+
+
 
