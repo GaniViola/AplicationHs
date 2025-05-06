@@ -3,6 +3,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Orders;
+use App\Models\Service;
 
 class OrderDetails extends Model
 {
@@ -32,5 +34,14 @@ class OrderDetails extends Model
     {
         return $this->belongsTo(Service::class, 'service_id');
     }
+    public function show(Orders $order)
+{
+    $order->load(['user', 'orderDetails.service']);
     
+    // Debugging:
+    dd($order->orderDetails->pluck('service'));
+
+    return view('admin.pages.Detailpesanan', compact('order'));
+}
+
 }

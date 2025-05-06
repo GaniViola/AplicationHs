@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orders;
-use App\Models\OrderDetails;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class OrderController extends Controller
 {

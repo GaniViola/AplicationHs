@@ -11,7 +11,7 @@ Route::middleware('guest')->group(function(){
     Route::get('/', function () {
         return view('pages.home');
     });
-    
+
     Route::get('/secure-area/login', [AuthController::class, 'showLoginForm']);
     Route::post('/secure-area/login', [AuthController::class, 'login'])->name('login');
 });
@@ -31,14 +31,12 @@ Route::middleware('auth')->group(function(){
     //service
     Route::resource('/services', ServicesController::class);
 
-
     //manajemen user
     // Customers
     Route::get('/DataCustomer', [UserController::class, 'customers'])->name('admin.customers');
     Route::patch('/DataCustomer/{id}/block', [UserController::class, 'blockCustomer'])->name('admin.customers.block');
     Route::patch('/DataCustomer/{id}/activate', [UserController::class, 'activateCustomer'])->name('admin.customers.activate');
     Route::post('/DataCustomer/bulk-action', [UserController::class, 'bulkAction'])->name('admin.customers.bulk');
-
 
     // Create Account
     Route::get('/CreateAccount', [UserController::class, 'index']);
@@ -52,14 +50,15 @@ Route::middleware('auth')->group(function(){
      Route::post('/orders/{order}/ready-payment', [OrderController::class, 'readyForPayment'])->name('orders.readyPayment');
      Route::post('/orders/{order}/reject', [OrderController::class, 'reject'])->name('orders.reject');
      Route::get('/orders/{order}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
+     Route::post('/orders/assign-worker', [OrderController::class, 'assignWorker'])->name('orders.assignWorker');
     // Route::get('/pesanan', function() {
     //     return view('admin.pages.PesananMasuk');
-    
+
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
     Route::delete('/UserMaster/{id}', [UserController::class, 'destroy'])->name('destroyuser');
    
+    // Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
 });
-    
-        
-   
+
+
 

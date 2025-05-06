@@ -12,8 +12,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('worker_id')->nullable()->constrained('users')->nullOnDelete();
+            if (!Schema::hasColumn('orders', 'worker_id')) {
+                $table->unsignedBigInteger('worker_id')->nullable();
+            }
         });
+        
     }
 
     /**

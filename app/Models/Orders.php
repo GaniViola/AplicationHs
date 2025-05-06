@@ -54,5 +54,4 @@ class Orders extends Model
     return $this->hasOne(Setoran::class);
 }
 
-
 }

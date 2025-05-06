@@ -21,12 +21,21 @@ class DatabaseSeeder extends Seeder
         Service::factory()->count(10)->create();
 
         User::factory()->create([
-            'username' => 'Test User',
-            'email' => 'test@gmail.com',
+            'username' => 'alex',
+            'email' => 'taktaoh538@gmail.com',
             'password' => Hash::make('123'),
             'address' => 'bondowoso',
-            'phone' => '089765556665',
-            'role' => 'admin'
+            'phone' => '085388393834',
+            'role' => 'customer'
+        ]);
+        User::factory()->create([
+            'username' => 'xela',
+            'email' => 'alexrohmatullah1@gmail.com',
+            'password' => Hash::make('123456'),
+            'address' => 'bondowoso',
+            'phone' => '085388393834',
+            'role' => 'customer'
         ]);
     }
+
 }
