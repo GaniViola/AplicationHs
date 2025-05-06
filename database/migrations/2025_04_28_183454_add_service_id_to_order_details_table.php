@@ -18,10 +18,13 @@ return new class extends Migration
             // $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
-
     public function down()
     {
         Schema::table('order_details', function (Blueprint $table) {
+            // Hapus foreign key constraint terlebih dahulu
+            $table->dropForeign('fk_orderdetails_services');
+            // Baru kemudian hapus kolom
             $table->dropColumn('service_id');
-        });    }
+        });
+    }
 };
