@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\search;
+
 class UserController extends Controller
 {
 
@@ -35,10 +37,26 @@ class UserController extends Controller
     }
 
     // User Master
-    public function ShowUserMaster() {
+    public function ShowUserMaster(Request $request) {
+
         return view('admin.pages.UserMaster', [
-            'users' => User::all()
+            'users' => User::latest()->Filter($request)->get()
         ]);
+        
+    }
+
+    // menghapus data user
+    public function destroy($id) {
+
+        $user = User::find($id);
+        
+        $user->delete();
+        if (!$user) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+
+        return back()->with('success', 'Data berhasil dihapus.');
     }
     
     // Menampilkan daftar customer

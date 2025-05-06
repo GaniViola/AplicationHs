@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function(){
     //     return view('admin.pages.PesananMasuk');
     
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
+    Route::delete('/UserMaster/{id}', [UserController::class, 'destroy'])->name('destroyuser');
    
 });
     

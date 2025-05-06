@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Clockwork\Request\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,5 +51,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function scopeFilter($query, $request) {
+        if($request['searchuser']) {
+           return $query->where('username', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('email', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('address', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('phone', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('role', 'like', '%'. $request['searchuser']. '%');
+        }
     }
 }
