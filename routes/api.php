@@ -20,6 +20,14 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/logout', [ApiController::class, 'logout']);
 Route::post('/change-password', [AuthController::class, 'changePassword']);
 
+// Rute untuk mengambil profil pengguna
+Route::get('/profile', [ApiController::class, 'getUserProfile']);
+
+// Rute untuk memperbarui profil pengguna
+Route::put('/profile/update', [ApiController::class, 'updateUserProfile']);
+
+
+
 
 });
 
@@ -34,3 +42,4 @@ Route::post('/orders', [OrderController::class, 'store']);
 
 Route::get('/orders', [OrderController::class, 'history']);
 Route::get('/orders/user/{id}', [OrderController::class, 'getUserOrders']);
+
