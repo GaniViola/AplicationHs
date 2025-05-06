@@ -22,6 +22,7 @@ class Orders extends Model
         'tanggal_pemesanan',
         'status',
         'metode_pembayaran',
+        'worker_id'
     ];
 
     public $timestamps = false; // INI TAMBAHKAN KARENA TABLE orders TIDAK PUNYA created_at, updated_at
@@ -44,4 +45,14 @@ class Orders extends Model
     {
         return $this->hasMany(OrderDetails::class, 'id_orders', 'id');
     }
+    public function worker()
+{
+    return $this->belongsTo(User::class, 'worker_id');
+}
+    public function setoran()
+{
+    return $this->hasOne(Setoran::class);
+}
+
+
 }
