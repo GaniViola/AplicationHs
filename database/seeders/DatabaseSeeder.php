@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
             'role' => 'customer'
         ]);
         User::factory()->create([
-            'username' => 'xela',
-            'email' => 'alexrohmatullah1@gmail.com',
+            'username' => 'test',
+            'email' => 'test@gmail.com',
             'password' => Hash::make('123456'),
             'address' => 'bondowoso',
             'phone' => '085388393834',
-            'role' => 'customer'
+            'role' => 'admin'
         ]);
     }
 

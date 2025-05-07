@@ -1,14 +1,113 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon">
-            <i class="fas fa-home"></i>
+    <!-- Kode HTML yang Ditingkatkan -->
+<a class="sidebar-brand" href="index.html">
+    <div class="brand-container">
+        <div class="brand-logo">
+            <img src="/images/logopolosputih.png" alt="HomeService Logo">
         </div>
-        <div class="sidebar-brand-text">HomeService Admin</div>
-    </a>
+        <div class="brand-text">
+            <span class="brand-name">HOMESERVICE</span>
+            <span class="brand-subtitle">ADMIN PANEL</span>
+        </div>
+    </div>
+</a>
 
+<!-- CSS yang Ditingkatkan -->
+<style>
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.8rem 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    background-color: #4e73df;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.brand-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.brand-logo {
+    margin-right: 0.25rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.brand-logo img {
+    height: 35px;
+    width: auto;
+    /* Menghilangkan background putih pada gambar */
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-grow: 1;
+    max-width: calc(100% - 40px);
+}
+
+.brand-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.2;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.brand-subtitle {
+    color: #e0e0e0;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Efek hover */
+.sidebar-brand:hover .brand-name {
+    color: #fdfdfd;
+    background: linear-gradient(90deg, #ffffff, #e0e0e0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.sidebar-brand:hover .brand-subtitle {
+    color: #ffffff;
+}
+
+.sidebar-brand:hover .brand-logo img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+}
+
+/* Font import - hanya gunakan jika diperlukan */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+</style>
+    
     <!-- Divider -->
     <hr class="sidebar-divider">
 
