@@ -70,4 +70,41 @@ public function login(Request $request)
         'user'    => $user
     ]);
 }
+// Menambahkan metode untuk mengambil profil pengguna
+public function getUserProfile(Request $request)
+{
+    // Ambil user berdasarkan token yang diberikan
+    $user = $request->user(); // Menggunakan auth untuk mendapatkan user yang terautentikasi
+
+    return response()->json([
+        'user' => $user
+    ]);
+}
+public function updateUserProfile(Request $request)
+{
+    // Validasi data yang diterima
+    $request->validate([
+        'username' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|string|max:20',
+        'address' => 'nullable|string|max:255',
+    ]);
+
+    // Ambil user berdasarkan token yang diberikan
+    $user = $request->user();
+
+    // Perbarui informasi profil pengguna
+    $user->update([
+        'username' => $request->username,
+        'email'    => $request->email,
+        'phone'    => $request->phone,
+        'address'  => $request->address,
+    ]);
+
+    return response()->json([
+        'message' => 'Profil berhasil diperbarui!',
+        'user'    => $user
+    ]);
+}
+
 }

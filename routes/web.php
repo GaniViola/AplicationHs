@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function(){
      Route::post('/orders/assign-worker', [OrderController::class, 'assignWorker'])->name('orders.assignWorker');
     // Route::get('/pesanan', function() {
     //     return view('admin.pages.PesananMasuk');
-
+ 
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
     Route::delete('/UserMaster/{id}', [UserController::class, 'destroy'])->name('destroyuser');
    
