@@ -53,6 +53,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function service() {
+        return $this->belongsToMany(Service::class);
+    }
+
     public function scopeFilter($query, $request) {
         if($request['searchuser']) {
            return $query->where('username', 'like', '%'. $request['searchuser']. '%')
