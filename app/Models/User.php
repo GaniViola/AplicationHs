@@ -10,39 +10,27 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    // Definisikan role
+    const ROLE_CUSTOMER = 'customer';
+    const ROLE_WORKER = 'worker';
+
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'username',
         'email',
         'password',
         'address',
         'phone',
-        'role',
+        'role',  // Pastikan 'role' ada di sini
         'photo'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -50,4 +38,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Menambahkan method untuk menentukan jika user adalah pekerja
+    public function isWorker()
+    {
+        return $this->role === self::ROLE_WORKER;
+    }
+
+    // Menambahkan method untuk menentukan jika user adalah customer
+    public function isCustomer()
+    {
+        return $this->role === self::ROLE_CUSTOMER;
+    }
 }
+

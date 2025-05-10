@@ -153,7 +153,7 @@
 
     <!-- Nav Item - Harga & Promo -->
     <li class="nav-item">
-        <a class="nav-link" href="/pricing">
+        <a class="nav-link" href="{{ route('admin.setoran.index') }}">
             <i class="fas fa-fw fa-tags"></i>
             <span>Setoran</span>
         </a>
