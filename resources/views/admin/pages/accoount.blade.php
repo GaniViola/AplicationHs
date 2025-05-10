@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword4" name="password" value="{{ old('password') }}">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword4" name="password">
                 @error('password')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <label for="inputState" class="form-label">User Role</label>
                 <select id="inputState" class="form-select @error('role') is-invalid @enderror" name="role">
-                  <option selected>Choose Role...</option>
+                  <option selected">Choose Role...</option>
                   <option value="admin">Admin</option>
                   <option value="worker">Worker</option>
                 </select>
@@ -72,6 +72,28 @@
                 </div>
                 @enderror
             </div>
+            <div class="col-md-6">
+              <label for="confirmPassword" class="form-label">confirm password</label>
+              <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="confirmPassword" name="password_confirmation">
+              @error('password_confirmation')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+            <div class="mb-3">
+              <label for="skills" class="form-label">Choose Skill</label>
+              <select name="skills[]" id="skills" class="form-select @error('skills') is-invalid @enderror" multiple required>
+                  @foreach ($services as $service)
+                      <option value="{{ $service->id }}" {{ (collect(old('skills'))->contains($service->id)) ? 'selected' : '' }}>
+                          {{ $service->name }}
+                      </option>
+                  @endforeach
+              </select>
+              @error('skills')
+                  <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+            </div>                   
             <div class="input-group mb-3">
                 <input type="file" class="form-control @error('photo') is-invalid @enderror" id="inputGroupFile02" name="photo">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
@@ -89,7 +111,5 @@
       </div>
     </div>
   </div>
-  
-
 
 @endsection

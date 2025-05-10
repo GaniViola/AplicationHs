@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Service;
+
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\search;
 
 class UserController extends Controller
 {
 
     public function index() {
-        return view('admin.pages.accoount');
+        return view('admin.pages.accoount', [
+            'title' => 'Create Account',
+            'services' => Service::all()
+        ]);
     }
 
     // Create account
@@ -20,25 +27,56 @@ class UserController extends Controller
             'email'    => 'required|email:rfc,dns|unique:users,email',
             'address'  => 'required|string|max:255',
             'phone'    => 'required|string|max:20',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
             'photo'    => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'role'     => 'required|in:admin,worker'
+            'role'     => 'required|in:admin,worker,customer',
+            'skills'   => 'required|array',
+            'skills.*' => 'exists:services,id'
         ]);
 
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('services', 'public');
         }
 
-        User::create($validated);
+        $user = User::create([
+            'username' => $validated['username'],
+            'email'    => $validated['email'],
+            'password' => $validated['password'],
+            'address'  => $validated['address'],
+            'phone'    => $validated['phone'],
+            'role'     => $validated['role'],
+            'photo'    => $validated['photo'],
+        ]);
 
-        return back()->with('createsuccess', 'Registration successful! please login');
+        if (!empty($validated['skills'])) {
+            $user->service()->attach($validated['skills']);
+        }
+
+        return back()->with('createsuccess', 'Cerate account user success');
     }
 
     // User Master
-    public function ShowUserMaster() {
+    public function ShowUserMaster(Request $request) {
+
         return view('admin.pages.UserMaster', [
-            'users' => User::all()
+            'title' => 'User Master',
+            'users' => User::latest()->Filter($request)->get()
         ]);
+        
+    }
+
+    // menghapus data user
+    public function destroy($id) {
+
+        $user = User::find($id);
+        
+        if (!$user) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+        
+        $user->delete();
+        
+        return back()->with('success', 'Data berhasil dihapus.');
     }
     
     // Menampilkan daftar customer

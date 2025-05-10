@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Clockwork\Request\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,16 +41,17 @@ class User extends Authenticatable
         ];
     }
 
-    // Menambahkan method untuk menentukan jika user adalah pekerja
-    public function isWorker()
-    {
-        return $this->role === self::ROLE_WORKER;
+    public function service() {
+        return $this->belongsToMany(Service::class);
     }
 
-    // Menambahkan method untuk menentukan jika user adalah customer
-    public function isCustomer()
-    {
-        return $this->role === self::ROLE_CUSTOMER;
+    public function scopeFilter($query, $request) {
+        if($request['searchuser']) {
+           return $query->where('username', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('email', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('address', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('phone', 'like', '%'. $request['searchuser']. '%')
+                  ->orWhere('role', 'like', '%'. $request['searchuser']. '%');
+        }
     }
 }
-

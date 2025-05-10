@@ -20,7 +20,9 @@ Route::middleware('guest')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', function() {
-        return view('admin.pages.home');
+        return view('admin.pages.home', [
+            'title' => 'Dashboard'
+        ]);
     });
 
     
@@ -62,4 +64,9 @@ Route::middleware('auth')->group(function(){
 
     // lainnya
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
+
 });
+
+
+
+
