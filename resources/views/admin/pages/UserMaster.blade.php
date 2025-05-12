@@ -59,8 +59,7 @@
                             <td class="text-center align-middle">{{ $user->phone }}</td>
                             <td class="text-center align-middle">
                                 @if (request('role') == 'worker')
-                                    {{-- <a href="" class="btn btn-primary btn-sm me-1">Show</a> --}}
-                                    <a href="#" class="btn btn-primary btn-sm me-1" data-bs-toggle="modal"  data-bs-target="#showModal{{ $user->id }}"> Show </a>
+                                    <a href="#" class="btn btn-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#showModal{{ $user->id }}"> Show </a>
                                 @endif
                                 <a href="" class="btn btn-warning btn-sm me-1">Edit</a>
                                 <form action="{{ route('destroyuser', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin hapus?')">
@@ -70,37 +69,37 @@
                                 </form>
                             </td>
                         </tr>
+
+                        <!-- Modal Show Detail -->
+                        <div class="modal fade" id="showModal{{ $user->id }}" tabindex="-1" aria-labelledby="showModalLabel{{ $user->id }}" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="showModalLabel{{ $user->id }}">Detail User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <strong>Skill:</strong>
+                                @if($user->service->count())
+                                    <ul>
+                                        @foreach ($user->service as $service)
+                                            <li>{{ $service->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p class="text-muted">Belum memiliki layanan</p>
+                                @endif
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="showModal{{ $user->id }}" tabindex="-1" aria-labelledby="showModalLabel{{ $user->id }}" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="showModalLabel{{ $user->id }}">Detail User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <strong>Skill:</strong>
-        @if($user->service->count())
-            <ul>
-                @foreach ($user->service as $service)
-                    <li>{{ $service->name }}</li>
-                @endforeach
-            </ul>
-        @else
-            <p class="text-muted">Belum memiliki layanan</p>
-        @endif
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 @endsection
