@@ -200,12 +200,13 @@
     </div>
 
     <!-- Nav Item - Laporan Pendapatan -->
-    <li class="nav-item">
-        <a class="nav-link" href="/laporan/pendapatan">
-            <i class="fas fa-fw fa-money-bill-wave"></i>
-            <span>Laporan Pendapatan</span>
-        </a>
-    </li>
+   <li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.laporan.pendapatan') }}">
+        <i class="fas fa-fw fa-money-bill-wave"></i>
+        <span>Laporan Pendapatan</span>
+    </a>
+</li>
+
 
     <!-- Nav Item - Statistik Layanan -->
     <li class="nav-item">
@@ -222,6 +223,15 @@
             <span>Laporan Pekerja</span>
         </a>
     </li>
+
+    <!-- Nav Item - Laporan Gaji Pekerja -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.gaji.index') }}">
+        <i class="fas fa-fw fa-money-bill-wave"></i>
+        <span>Laporan Gaji Pekerja</span>
+    </a>
+</li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

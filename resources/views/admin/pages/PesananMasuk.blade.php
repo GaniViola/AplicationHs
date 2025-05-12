@@ -92,28 +92,39 @@
 
                                     @if($order->status === 'pending')
                                     @if(!$order->worker_id)
-                                        <!-- Form assign worker -->
-                                        <form action="{{ route('orders.assignWorker') }}" method="POST" class="d-flex mb-2">
-                                            @csrf
-                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                            <select name="worker_id" class="form-select form-select-sm me-2" required>
-                                                <option value="">Pilih Pekerja</option>
-                                                @foreach($workers as $worker)
-                                                    @php
-                                                        // Mengecek apakah pekerja sudah ditugaskan ke order lain
-                                                        $assigned = $orders->contains('worker_id', $worker->id);
-                                                    @endphp
-                                                    @if(!$assigned)
-                                                        <option value="{{ $worker->id }}">{{ $worker->username }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                            <button type="submit" class="btn btn-sm btn-outline-primary">Set</button>
-                                        </form>
-                                    @else
-                                        <span class="badge bg-info">Pekerja: {{ $order->worker->username ?? 'N/A' }}</span>
-                                    @endif
-                                
+    <!-- Form assign worker -->
+    <form action="{{ route('orders.assignWorker') }}" method="POST" class="d-flex mb-2">
+        @csrf
+        <input type="hidden" name="order_id" value="{{ $order->id }}">
+
+        <select name="worker_id" class="form-select form-select-sm me-2" required>
+            <option value="">Pilih Pekerja</option>
+            @foreach($workers as $worker)
+                @php
+                    // Ambil id layanan pekerja dan order
+                    $workerServiceIds = $worker->services->pluck('id')->toArray();
+                    $orderServiceIds = $order->orderDetails->pluck('service_id')->toArray();
+
+                    // Cek apakah layanan pekerja cocok dengan pesanan
+                    $hasMatchingService = !empty(array_intersect($workerServiceIds, $orderServiceIds));
+
+                    // Cek apakah pekerja sedang aktif di order lain
+                    $isAssigned = $orders->whereIn('status', ['pending', 'proses'])
+                                        ->contains('worker_id', $worker->id);
+                @endphp
+
+                @if($hasMatchingService && !$isAssigned)
+                    <option value="{{ $worker->id }}">{{ $worker->username }}</option>
+                @endif
+            @endforeach
+        </select>
+
+        <button type="submit" class="btn btn-sm btn-outline-primary">Set</button>
+    </form>
+@else
+    <span class="badge bg-info">Pekerja: {{ $order->worker->username ?? 'N/A' }}</span>
+@endif
+
                                     <!-- Tombol Tolak -->
                                     <form action="{{ route('orders.reject', $order->id) }}" method="POST" class="d-inline">
                                         @csrf

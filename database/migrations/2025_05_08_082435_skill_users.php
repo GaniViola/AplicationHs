@@ -22,8 +22,14 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::dropIfExists('skill_users');
-    }
+   public function down(): void
+{
+    Schema::table('service_user', function (Blueprint $table) {
+        $table->dropForeign(['user_id']);
+        $table->dropForeign(['service_id']);
+    });
+
+    Schema::dropIfExists('service_user');
+}
+
 };

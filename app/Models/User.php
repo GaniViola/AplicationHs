@@ -54,4 +54,10 @@ class User extends Authenticatable
                   ->orWhere('role', 'like', '%'. $request['searchuser']. '%');
         }
     }
+    // App\Models\User.php
+public function services()
+{
+    return $this->belongsToMany(Service::class, 'service_user');
+}
+
 }

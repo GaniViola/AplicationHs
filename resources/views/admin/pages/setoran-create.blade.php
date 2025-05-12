@@ -29,10 +29,7 @@
                                 <option value="" disabled selected>Pilih Order</option>
                                 @foreach ($orders as $order)
                                     @php
-                                        $layanan = $order->orderDetails->map(function($od) {
-                                            return $od->service->name ?? 'Layanan tidak diketahui';
-                                        })->join(', ');
-
+                                        $layanan = $order->orderDetails->map(fn($od) => $od->service->name ?? 'Layanan tidak diketahui')->join(', ');
                                         $subtotal = $order->orderDetails->sum('subtotal');
                                     @endphp
                                     <option 
@@ -53,25 +50,19 @@
                     <div class="col-md-6">
                         <div class="mb-4">
                             <label class="form-label fw-bold text-secondary">Nama Pekerja</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" id="worker_name" class="form-control form-control-lg" placeholder="Nama pekerja akan muncul otomatis" disabled>
-                            </div>
+                            <input type="text" id="worker_name" class="form-control form-control-lg" disabled>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-4">
                             <label class="form-label fw-bold text-secondary">Nama Customer</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
-                                <input type="text" id="customer_name" class="form-control form-control-lg" placeholder="Nama customer akan muncul otomatis" disabled>
-                            </div>
+                            <input type="text" id="customer_name" class="form-control form-control-lg" disabled>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="mb-4">
                             <label for="jumlah_setoran" class="form-label fw-bold text-secondary">Jumlah Setoran</label>
                             <div class="input-group">
@@ -80,13 +71,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="mb-4">
                             <label class="form-label fw-bold text-secondary">Total Tagihan</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-cash"></i></span>
-                                <input type="text" id="total_order" class="form-control form-control-lg bg-light" disabled>
-                            </div>
+                            <input type="text" id="total_order" class="form-control form-control-lg bg-light" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">Total untuk Admin (80%)</label>
+                            <input type="text" id="admin_share" class="form-control form-control-lg bg-light" disabled>
                         </div>
                     </div>
                 </div>
@@ -104,13 +98,14 @@
     </div>
 </div>
 
-{{-- Script untuk update data otomatis --}}
+{{-- Script JS --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const orderSelect = document.getElementById('order_id');
         const workerNameInput = document.getElementById('worker_name');
         const customerNameInput = document.getElementById('customer_name');
         const totalOrderInput = document.getElementById('total_order');
+        const adminShareInput = document.getElementById('admin_share');
 
         orderSelect.addEventListener('change', function () {
             const selectedOption = this.options[this.selectedIndex];
@@ -118,18 +113,10 @@
             const customerName = selectedOption.getAttribute('data-customer-name');
             const total = selectedOption.getAttribute('data-total');
 
-            // Menambahkan log untuk melihat data yang diambil
-            console.log('Selected Order ID:', selectedOption.value);
-            console.log('Worker Name:', workerName);
-            console.log('Customer Name:', customerName);
-            console.log('Total Tagihan:', total);
-
-            // Update Nama Pekerja
             workerNameInput.value = workerName || 'Tidak Diketahui';
-            // Update Nama Customer
             customerNameInput.value = customerName || 'Tidak Diketahui';
-            // Update Total Tagihan
             totalOrderInput.value = total ? 'Rp ' + parseInt(total).toLocaleString('id-ID') : '';
+            adminShareInput.value = total ? 'Rp ' + Math.floor(0.8 * total).toLocaleString('id-ID') : '';
         });
     });
 </script>

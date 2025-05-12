@@ -13,6 +13,10 @@ Route::middleware('guest')->group(function(){
         return view('pages.home');
     });
 
+    Route::get('/test-404', function () {
+    abort(404);
+    });
+
     Route::get('/secure-area/login', [AuthController::class, 'showLoginForm']);
     Route::post('/secure-area/login', [AuthController::class, 'login'])->name('login');
 });
@@ -33,6 +37,12 @@ Route::middleware('auth')->group(function(){
         Route::post('/', 'store')->name('store');          // admin.setoran.store
         Route::put('/{id}', 'update')->name('update');     // admin.setoran.update
     });
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/laporan-gaji', [SetoranController::class, 'laporanGaji'])->name('gaji.index');
+ 
+});
+ Route::get('/laporan/pendapatan', [SetoranController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
 
     // category
     Route::get('/categories', [CategoryController::class, 'index']);
@@ -64,6 +74,7 @@ Route::middleware('auth')->group(function(){
 
     // lainnya
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('destroyuser');
 
 });
 

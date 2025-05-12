@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     public function index()
     {
         $categories = Category::paginate(5);
-        return view('admin.pages.categories', compact('categories'));
+        return view('admin.pages.categories', [
+            'title' => 'Daftar Kategori',
+            'categories' => $categories
+        ]);
     }
 
     public function create()
     {
-        return view('admin.pages.categories.create');
+        return view('admin.pages.categories.create', [
+            'title' => 'Tambah Kategori'
+        ]);
     }
 
     public function store(Request $request)
@@ -26,20 +30,24 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories|max:200',
             'description' => 'nullable'
         ]);
-    
+
         DB::transaction(function () use ($request) {
             Category::create([
                 'name' => $request->name,
                 'description' => $request->description
             ]);
         });
-    
+
         return redirect('/categories')->with('success', 'Kategori berhasil ditambahkan!');
     }
+
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.pages.categories.edit', compact('category'));
+        return view('admin.pages.categories.edit', [
+            'title' => 'Edit Kategori',
+            'category' => $category
+        ]);
     }
 
     public function update(Request $request, $id)
