@@ -29,11 +29,13 @@ class OrderDetails extends Model
     {
         return $this->belongsTo(Orders::class, 'id_orders');
     }
-
+    
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id');
     }
+    
+    
     public function show(Orders $order)
 {
     $order->load(['user', 'orderDetails.service']);

@@ -2,33 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Orders; // <--- tambahkan ini!
 use App\Models\User;
 
 class Setoran extends Model
 {
-    use HasFactory;
-
-    protected $table = 'setorans';
-    protected $primaryKey = 'id_setoran';
-
     protected $fillable = [
-        'id_orders',
-        'id',
+        'order_id',
+        'worker_id',
         'jumlah_setoran',
+        'jumlah_admin',
+        'jumlah_pekerja',
         'tanggal_setoran',
         'status_setoran',
     ];
 
-    public function Order()
+    public function order()
     {
-        return $this->belongsTo(Orders::class, 'id_orders');
+        return $this->belongsTo(Orders::class, 'order_id');
     }
 
-    public function user()
+   public function worker()
+{
+    return $this->belongsTo(User::class, 'worker_id');
+}
+    // Dapatkan customer melalui relasi order
+    public function customer()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsToThrough(User::class, Orders::class, 'user_id');
     }
 }

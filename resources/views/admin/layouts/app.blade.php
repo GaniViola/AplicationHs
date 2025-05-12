@@ -8,11 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
+    <link rel="icon" href="{{ asset('images/logohitam.png') }}" type="image/x-icon">
+
     <title>Home Service - {{ $title }}</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    
+
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -21,19 +24,60 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <!-- Custom Styling -->
     <style>
         .badge.bg-warning,
         .badge.bg-info,
         .badge.bg-primary,
         .badge.bg-secondary,
         .badge.bg-success {
-            color: white !important; /* Pastikan teks jadi putih */
+            color: white !important;
         }
-    </style>    
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            background-color: white;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        #preloader img {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        #loading-text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 20px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        body.loaded #preloader {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
 
 </head>
 
 <body id="page-top">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo">
+        <div id="loading-text">Loading<span id="dots"></span></div>
+    </div>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -54,10 +98,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
                     @yield('content')
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -125,40 +166,37 @@
     <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
 
-    {{-- icon password --}}
+    <!-- Preloader Script -->
     <script>
-        // Toggle untuk Password
-        document.getElementById('togglePassword').addEventListener('click', function () {
-            const passwordInput = document.getElementById('inputPassword4');
-            const icon = this;
+        // Hilangkan preloader setelah halaman dimuat
+        window.addEventListener('load', function () {
+            document.body.classList.add('loaded');
+        });
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';  // Ubah ke text
-                icon.classList.remove('bi-eye-slash');
-                icon.classList.add('bi-eye');
-            } else {
-                passwordInput.type = 'password';  // Kembali ke password
-                icon.classList.remove('bi-eye');
-                icon.classList.add('bi-eye-slash');
-            }
+        // Tampilkan preloader saat klik link internal
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"]):not([data-bs-toggle])');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    const isSamePage = href === window.location.href || href === '#';
+                    if (!isSamePage && href && !href.startsWith('javascript')) {
+                        document.body.classList.remove('loaded');
+                        document.getElementById('preloader').style.visibility = 'visible';
+                        document.getElementById('preloader').style.opacity = '1';
+                    }
+                });
+            });
+
+            // Animasi titik-titik di teks loading
+            const dots = document.getElementById('dots');
+            let count = 0;
+            setInterval(() => {
+                count = (count + 1) % 4;
+                dots.textContent = '.'.repeat(count);
+            }, 500);
         });
-    
-        // Toggle untuk Confirm Password
-        document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            const icon = this;
-    
-            if (confirmPasswordInput.type === 'password') {
-                confirmPasswordInput.type = 'text';  // Ubah ke text
-                icon.classList.remove('bi-eye-slash');
-                icon.classList.add('bi-eye');
-            } else {
-                confirmPasswordInput.type = 'password';  // Kembali ke password
-                icon.classList.remove('bi-eye');
-                icon.classList.add('bi-eye-slash');
-            }
-        });
-    </script>    
+    </script>
 
 </body>
 

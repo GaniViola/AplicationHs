@@ -23,50 +23,58 @@ class OrderController extends Controller
             'services.*.quantity' => 'required|integer',
             'services.*.price' => 'required|integer',
         ]);
-
-        // Mulai transaksi
+    
         DB::beginTransaction();
-
+    
         try {
-            // Simpan data order
+            // Simpan order
             $order = Orders::create([
                 'user_id' => $request->user_id,
                 'tanggal_pemesanan' => $request->tanggal_pemesanan,
                 'metode_pembayaran' => $request->metode_pembayaran,
-                'status' => 'pending', // status default
+                'status' => 'pending',
             ]);
-
-            // Cek jika ID order masih null
+    
+            // Cek ID order valid
             if ($order->id === null) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Gagal menyimpan order, ID order tidak ditemukan.',
                 ], 500);
             }
-
-            // Simpan data order detail
+    
+            // Inisialisasi total
+            $total = 0;
+    
+            // Simpan order detail dan hitung total
             foreach ($request->services as $service) {
+                $subtotal = $service['quantity'] * $service['price'];
+    
                 OrderDetails::create([
                     'id_orders' => $order->id,
                     'service_id' => $service['service_id'],
                     'quantity' => $service['quantity'],
                     'price' => $service['price'],
-                    'subtotal' => $service['quantity'] * $service['price'],
+                    'subtotal' => $subtotal,
                 ]);
+    
+                $total += $subtotal;
             }
-
-            // Commit transaksi jika tidak ada error
+    
+            // Simpan total ke order
+            $order->total_pembayaran = $total;
+            $order->save();
+    
             DB::commit();
-
+    
             return response()->json([
                 'status' => true,
                 'message' => 'Order berhasil dibuat',
                 'order_id' => $order->id
             ]);
         } catch (\Exception $e) {
-            // Rollback jika ada error
             DB::rollBack();
-
+    
             return response()->json([
                 'status' => false,
                 'message' => 'Gagal membuat order',
@@ -74,6 +82,7 @@ class OrderController extends Controller
             ], 500);
         }
     }
+    
 
     // Mengambil riwayat pesanan user
     public function history(Request $request)
