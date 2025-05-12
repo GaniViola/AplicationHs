@@ -35,7 +35,7 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')->store('services', 'public');
+            $validated['photo'] = $request->file('photo')->store('userphoto', 'public');
         }
 
         $user = User::create([
@@ -58,9 +58,12 @@ class UserController extends Controller
     // User Master
     public function ShowUserMaster(Request $request) {
 
+        $role = $request->role;
+        $search = $request->searchuser;
+
         return view('admin.pages.UserMaster', [
             'title' => 'User Master',
-            'users' => User::latest()->Filter($request)->get()
+            'users' => User::with('service')->latest()->search($search)->role($role)->get()
         ]);
         
     }

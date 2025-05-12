@@ -57,13 +57,27 @@ class User extends Authenticatable
         return $this->belongsToMany(Service::class);
     }
 
-    public function scopeFilter($query, $request) {
-        if($request['searchuser']) {
-           return $query->where('username', 'like', '%'. $request['searchuser']. '%')
-                  ->orWhere('email', 'like', '%'. $request['searchuser']. '%')
-                  ->orWhere('address', 'like', '%'. $request['searchuser']. '%')
-                  ->orWhere('phone', 'like', '%'. $request['searchuser']. '%')
-                  ->orWhere('role', 'like', '%'. $request['searchuser']. '%');
+    // Scope untuk pencarian
+    public function scopeSearch($query, $keyword)
+    {
+        if ($keyword) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('username', 'like', "%{$keyword}%")
+                ->orWhere('email', 'like', "%{$keyword}%")
+                ->orWhere('phone', 'like', "%{$keyword}%")
+                ->orWhere('photo', 'like', "%{$keyword}%")
+                ->orWhere('address', 'like', "%{$keyword}%");
+            });
         }
+        return $query;
+    }
+
+    // Scope untuk role
+    public function scopeRole($query, $role)
+    {
+        if ($role) {
+            $query->where('role', $role);
+        }
+        return $query;
     }
 }

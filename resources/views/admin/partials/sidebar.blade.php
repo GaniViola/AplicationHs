@@ -177,7 +177,7 @@
 
     <!-- Nav Item - Data Pekerja -->
     <li class="nav-item">
-        <a class="nav-link" href="/UserMaster">
+        <a class="nav-link" href="/UserMaster?role=admin">
             <i class="fas fa-fw fa-user-cog"></i>
             <span>Data User</span>
         </a>

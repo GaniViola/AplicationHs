@@ -35,15 +35,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '085388393834',
             'role' => 'admin'
         ]);
-
-        User::factory()->create([
-            'username' => 'Test User',
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('123'),
-            'address' => 'bondowoso',
-            'phone' => '085388393834',
-            'role' => 'admin'
-        ]);
         
         Category::factory()->count(5)->create();
         Service::factory()->count(10)->create();

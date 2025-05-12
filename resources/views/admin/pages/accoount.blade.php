@@ -50,9 +50,10 @@
                 </div>
               @enderror
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 position-relative">
                 <label for="inputPassword4" class="form-label">Password</label>
                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword4" name="password">
+                <i class="bi bi-eye-slash position-absolute text-secondary" id="togglePassword" style="top: 74%; right: 22px; transform: translateY(-50%); cursor: pointer;"></i>
                 @error('password')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -74,7 +75,8 @@
             </div>
             <div class="col-md-6">
               <label for="confirmPassword" class="form-label">confirm password</label>
-              <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="confirmPassword" name="password_confirmation">
+              <input type="password" class="form-control" id="confirmPassword" name="password_confirmation">
+              <i class="bi bi-eye-slash position-absolute text-secondary" id="toggleConfirmPassword" style="top: 74%; right: 22px; transform: translateY(-50%); cursor: pointer;"></i>
               @error('password_confirmation')
               <div class="invalid-feedback">
                 {{ $message }}
