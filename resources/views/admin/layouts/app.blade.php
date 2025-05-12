@@ -15,6 +15,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -197,6 +198,40 @@
             }, 500);
         });
     </script>
+
+    <script>
+        // Toggle untuk Password
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordInput = document.getElementById('inputPassword4');
+            const icon = this;
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';  // Ubah ke text
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            } else {
+                passwordInput.type = 'password';  // Kembali ke password
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            }
+        });
+    
+        // Toggle untuk Confirm Password
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const icon = this;
+    
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';  // Ubah ke text
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            } else {
+                confirmPasswordInput.type = 'password';  // Kembali ke password
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            }
+        });
+    </script> 
 
 </body>
 

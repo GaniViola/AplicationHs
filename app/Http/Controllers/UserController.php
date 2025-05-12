@@ -83,23 +83,22 @@ class UserController extends Controller
     }
     
     // Menampilkan daftar customer
-public function customers(Request $request)
-{
-    $search = $request->input('search');
-    $title = 'Daftar Customer';  // Menambahkan variabel title
+    public function customers(Request $request)
+    {
+        $search = $request->input('search');
 
-    $customers = User::where('role', 'customer')
-        ->when($search, function ($query, $search) {
-            $query->where(function($q) use ($search) {
-                $q->where('username', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
-            });
-        })
-        ->orderBy('id')
-        ->get();
+        $customers = User::where('role', 'customer')
+            ->when($search, function ($query, $search) {
+                $query->where(function($q) use ($search) {
+                    $q->where('username', 'like', "%{$search}%")
+                      ->orWhere('email', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('id')
+            ->get();
 
-    return view('admin.pages.DataUser', compact('customers', 'search', 'title'));
-}
+        return view('admin.pages.DataUser', compact('customers', 'search'));
+    }
 
     // Blokir satu customer
     public function blockCustomer($id)
