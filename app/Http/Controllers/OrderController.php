@@ -31,8 +31,10 @@ class OrderController extends Controller
         }
 
         $orders = $ordersQuery->orderBy('tanggal_pemesanan', 'desc')->paginate(10);
+
+        // ✅ Eager load 'services' untuk menghindari error pluck() on null
+        $workers = User::with('services')->where('role', 'worker')->get();
         $services = Service::all();
-        $workers = User::where('role', 'worker')->get();
 
         return view('admin.pages.PesananMasuk', [
             'title' => 'Pesanan Masuk',
