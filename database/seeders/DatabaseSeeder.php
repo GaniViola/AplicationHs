@@ -17,8 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        Category::factory()->count(5)->create();
-        Service::factory()->count(10)->create();
 
         User::factory()->create([
             'username' => 'alex',
@@ -28,14 +26,19 @@ class DatabaseSeeder extends Seeder
             'phone' => '085388393834',
             'role' => 'customer'
         ]);
+
         User::factory()->create([
-            'username' => 'xela',
-            'email' => 'alexrohmatullah1@gmail.com',
+            'username' => 'test',
+            'email' => 'test@gmail.com',
             'password' => Hash::make('123456'),
             'address' => 'bondowoso',
             'phone' => '085388393834',
-            'role' => 'customer'
+            'role' => 'admin'
         ]);
+        
+        Category::factory()->count(5)->create();
+        Service::factory()->count(10)->create();
     }
+
 
 }

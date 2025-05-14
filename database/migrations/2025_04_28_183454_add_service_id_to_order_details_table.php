@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::table('order_details', function (Blueprint $table) {
             $table->unsignedBigInteger('service_id')->after('id_orders');
-
-            // Kalau mau sekalian relasi ke tabel services
-            // $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+    
+            // Menambahkan foreign key untuk relasi ke tabel services
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
-    public function down()
+    
+    public function down(): void
     {
         Schema::table('order_details', function (Blueprint $table) {
-            // Hapus foreign key constraint terlebih dahulu
-            $table->dropForeign('fk_orderdetails_services');
-            // Baru kemudian hapus kolom
-            $table->dropColumn('service_id');
+            // Pastikan foreign key dihapus terlebih dahulu
+            if (Schema::hasColumn('order_details', 'service_id')) {
+                $table->dropForeign(['service_id']);
+                $table->dropColumn('service_id');
+            }
         });
     }
-};
+    
+};    

@@ -13,7 +13,9 @@ class ServicesController extends Controller
     {
         $services = Service::with('category')->paginate(5);
         $categories = Category::all();
-        return view('admin.pages.services', compact('services', 'categories'));
+        return view('admin.pages.services', compact('services', 'categories'), [
+            'title' => 'Jenis Layanan'
+        ]);
     }
     
     public function create()
@@ -40,7 +42,7 @@ class ServicesController extends Controller
 
         Service::create($data);
 
-        return redirect('/services')->with('success', 'Layanan berhasil ditambahkan!');
+        return back()->with('success', 'Layanan berhasil ditambahkan!');
     }
 
     public function edit($id)

@@ -41,17 +41,25 @@ class Orders extends Model
     {
         return $this->hasMany(Setoran::class, 'id_orders');
     }
-    public function orderDetails()
-    {
-        return $this->hasMany(OrderDetails::class, 'id_orders', 'id');
-    }
-    public function worker()
-{
-    return $this->belongsTo(User::class, 'worker_id');
-}
     public function setoran()
 {
     return $this->hasOne(Setoran::class);
 }
+
+
+public function orderDetails()
+{
+    return $this->hasMany(OrderDetails::class, 'id_orders'); // Sesuai kolom foreign key di order_details
+}
+
+public function worker()
+    {
+        return $this->belongsTo(User::class, 'worker_id'); // pekerja
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // customer
+    }
 
 }
