@@ -43,7 +43,11 @@ Route::middleware('auth')->group(function(){
  
 });
  Route::get('/laporan/pendapatan', [SetoranController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
+ // Route untuk export PDF
+Route::get('/laporan/pendapatan/pdf', [SetoranController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
 
+// Route untuk export Excel
+Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
     // category
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'store']);
