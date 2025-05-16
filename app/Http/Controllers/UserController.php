@@ -86,6 +86,7 @@ class UserController extends Controller
     public function customers(Request $request)
     {
         $search = $request->input('search');
+         $title = 'Daftar Customer'; 
 
         $customers = User::where('role', 'customer')
             ->when($search, function ($query, $search) {
@@ -97,7 +98,7 @@ class UserController extends Controller
             ->orderBy('id')
             ->get();
 
-        return view('admin.pages.DataUser', compact('customers', 'search'));
+        return view('admin.pages.DataUser', compact('customers', 'search','title'));
     }
 
     // Blokir satu customer
