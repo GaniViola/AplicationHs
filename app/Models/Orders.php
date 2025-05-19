@@ -61,5 +61,10 @@ public function worker()
     {
         return $this->belongsTo(User::class, 'user_id'); // customer
     }
+public function workPhotos()
+{
+    return $this->hasMany(WorkPhoto::class, 'order_id');
+}
 
 }
+
