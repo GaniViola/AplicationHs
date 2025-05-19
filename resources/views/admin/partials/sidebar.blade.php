@@ -1,5 +1,6 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-green-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+
 
     <!-- Kode HTML yang Ditingkatkan -->
 <a class="sidebar-brand" href="index.html">
@@ -16,6 +17,7 @@
 
 <!-- CSS yang Ditingkatkan -->
 <style>
+    
 .sidebar-brand {
     display: flex;
     align-items: center;
@@ -24,7 +26,7 @@
     text-decoration: none;
     transition: all 0.3s ease;
     width: 100%;
-    background-color: #4e73df;
+    background-color: #004d00;
     overflow: visible;
     box-sizing: border-box;
 }
@@ -266,7 +268,7 @@
 <!-- CSS untuk meningkatkan tampilan -->
 <style>
     #accordionSidebar {
-        background: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+        background: linear-gradient(180deg, #037403 10%, #037403 100%);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         transition: all 0.3s;
         max-height: 100vh;
