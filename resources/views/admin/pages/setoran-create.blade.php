@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-4">
     <div class="card shadow-lg border-0 rounded-3">
-        <div class="card-header bg-gradient-primary text-white py-3">
+        <div class="card-header bg-gradient-success text-white py-3">
             <div class="d-flex align-items-center">
                 <i class="bi bi-cash-coin fs-3 me-2"></i>
                 <h4 class="mb-0">Input Setoran Baru</h4>

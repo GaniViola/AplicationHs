@@ -34,9 +34,9 @@ class SetoranController extends Controller
     // Menampilkan form input setoran baru
     public function create()
     {
-        $orders = Orders::where('status', 'pending_setoran')
-            ->with(['orderDetails.service', 'customer', 'worker'])
-            ->get();
+     $orders = Orders::where('status', 'pending_setoran')
+    ->with(['customer', 'worker', 'orderDetails.service'])
+    ->get();
 
         return view('admin.pages.setoran-create', [
             'title' => 'Tambah Setoran',

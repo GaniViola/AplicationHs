@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-success text-white">
             <h4 class="mb-0">Manajemen Booking</h4>
         </div>
         <div class="card-body">
@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <div class="col-md-3 mb-2">
-                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <button type="submit" class="btn btn-success">Filter</button>
                         <a href="{{ route('orders.index') }}" class="btn btn-secondary">Reset</a>
                     </div>
                 </div>

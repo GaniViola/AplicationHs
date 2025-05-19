@@ -5,10 +5,10 @@
     <!-- Header Section -->
     <div class="row align-items-center mb-4">
         <div class="col-md-7">
-            <h1 class="fw-bold text-primary mb-0">{{ $title }}</h1>
+            <h1 class="fw-bold text-success mb-0">{{ $title }}</h1>
         </div>
         <div class="col-md-5 text-md-end mt-3 mt-md-0">
-            <div class="badge bg-primary rounded-pill px-3 py-2 shadow-sm">
+            <div class="badge bg-success rounded-pill px-3 py-2 shadow-sm">
                 <i class="far fa-calendar-alt me-2"></i>
                 {{ \Carbon\Carbon::parse($startDate)->format('d M Y') }} - {{ \Carbon\Carbon::parse($endDate)->format('d M Y') }}
             </div>
@@ -19,7 +19,7 @@
     <div class="card border-0 shadow-sm rounded-3 mb-4 overflow-hidden">
         <div class="card-header bg-white border-bottom border-light py-3">
             <h5 class="mb-0">
-                <i class="fas fa-filter text-primary me-2"></i>
+                <i class="fas fa-filter text-success me-2"></i>
                 Filter Data Gaji
             </h5>
         </div>
@@ -29,7 +29,7 @@
                     <label class="form-label small text-muted fw-bold">Dari Tanggal</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text bg-white border-end-0">
-                            <i class="fas fa-calendar-alt text-primary"></i>
+                            <i class="fas fa-calendar-alt text-success"></i>
                         </span>
                         <input type="date" name="start_date" value="{{ $startDate }}" class="form-control border-start-0 ps-0 shadow-none">
                     </div>
@@ -38,13 +38,13 @@
                     <label class="form-label small text-muted fw-bold">Sampai Tanggal</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text bg-white border-end-0">
-                            <i class="fas fa-calendar-alt text-primary"></i>
+                            <i class="fas fa-calendar-alt text-success"></i>
                         </span>
                         <input type="date" name="end_date" value="{{ $endDate }}" class="form-control border-start-0 ps-0 shadow-none">
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center">
+                    <button type="submit" class="btn btn-success btn-lg w-100 d-flex align-items-center justify-content-center">
                         <i class="fas fa-search me-2"></i>
                         <span>Tampilkan</span>
                     </button>
@@ -56,15 +56,15 @@
     <!-- Tabel Gaji Card -->
     <div class="card border-0 shadow rounded-3 overflow-hidden mb-4">
         <div class="card-header d-flex justify-content-between align-items-center py-3 bg-white border-bottom">
-            <h5 class="mb-0 text-primary">
+            <h5 class="mb-0 text-success">
                 <i class="fas fa-money-bill-wave me-2"></i>
                 Data Gaji Pekerja
             </h5>
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary" title="Export Excel">
+                <button type="button" class="btn btn-sm btn-outline-success" title="Export Excel">
                     <i class="fas fa-file-excel me-1"></i> Excel
                 </button>
-                <button type="button" class="btn btn-sm btn-outline-primary" title="Print">
+                <button type="button" class="btn btn-sm btn-outline-success" title="Print">
                     <i class="fas fa-print me-1"></i> Print
                 </button>
             </div>
@@ -88,7 +88,7 @@
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="avatar-circle bg-primary text-white me-2">
+                                        <div class="avatar-circle bg-success text-white me-2">
                                             {{ substr($gaji->worker->username ?? 'U', 0, 1) }}
                                         </div>
                                         <span class="fw-bold">{{ $gaji->worker->username ?? '-' }}</span>
@@ -97,7 +97,7 @@
                                 <td class="text-center">
                                     <span class="badge bg-success rounded-pill px-3 py-2">{{ $gaji->jumlah_setoran }}</span>
                                 </td>
-                                <td class="text-end fw-bold text-primary">
+                                <td class="text-end fw-bold text-success">
                                     Rp {{ number_format($gaji->total_gaji, 0, ',', '.') }}
                                 </td>
                                 <td class="text-end text-secondary">
@@ -116,7 +116,7 @@
                                     <div class="empty-state">
                                         <i class="fas fa-file-search fa-3x text-muted mb-3"></i>
                                         <p class="text-muted">Tidak ada data setoran ditemukan.</p>
-                                        <button class="btn btn-sm btn-outline-primary mt-2">
+                                        <button class="btn btn-sm btn-outline-success mt-2">
                                             <i class="fas fa-sync-alt me-1"></i> Refresh Data
                                         </button>
                                     </div>
