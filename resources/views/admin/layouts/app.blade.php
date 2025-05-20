@@ -150,6 +150,8 @@
     {{-- Modal Bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Bootstrap JS (wajib untuk modal bisa close) -->
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -231,7 +233,7 @@
                 icon.classList.add('bi-eye-slash');
             }
         });
-    </script> 
+    </script>
 
 </body>
 

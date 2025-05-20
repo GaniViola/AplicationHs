@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Service;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 use function Laravel\Prompts\search;
 
@@ -30,7 +32,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'photo'    => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'role'     => 'required|in:admin,worker,customer',
-            'skills'   => 'required|array',
+            'skills'   => 'array',
             'skills.*' => 'exists:services,id'
         ]);
 
@@ -75,6 +77,10 @@ class UserController extends Controller
         
         if (!$user) {
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+        if ($user->photo && Storage::disk('public')->exists($user->photo)) {
+            Storage::disk('public')->delete($user->photo);
         }
         
         $user->delete();

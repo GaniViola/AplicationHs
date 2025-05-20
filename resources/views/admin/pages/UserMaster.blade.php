@@ -44,6 +44,9 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
+                        @if ($user->id === auth()->user()->id)
+                            @continue
+                        @endif
                         <tr>
                             <td class="text-center align-middle">{{ $loop->iteration }}</td>
                             <td class="text-center align-middle">
