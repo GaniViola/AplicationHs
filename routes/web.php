@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SetoranController;
+use App\Http\Controllers\WorkPhotoController;
 
 Route::middleware('guest')->group(function(){
     Route::get('/', function () {
@@ -79,6 +80,9 @@ Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'
     // lainnya
     Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('destroyuser');
+
+    //laporan foto pekerja
+   Route::get('/admin/laporan-pekerja', [WorkPhotoController::class, 'index'])->name('admin.laporan.pekerja');
 
 });
 

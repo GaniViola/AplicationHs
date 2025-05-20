@@ -23,7 +23,7 @@
                     <label class="form-label mb-1">Dari Tanggal:</label>
                     <div class="input-group">
                         <span class="input-group-text">
-                            <i class="fas fa-calendar text-primary"></i>
+                            <i class="fas fa-calendar text-success"></i>
                         </span>
                         <input type="date" name="start_date" value="{{ $startDate }}" class="form-control" id="start-date">
                     </div>
@@ -33,14 +33,14 @@
                     <label class="form-label mb-1">Sampai Tanggal:</label>
                     <div class="input-group">
                         <span class="input-group-text">
-                            <i class="fas fa-calendar text-primary"></i>
+                            <i class="fas fa-calendar text-success"></i>
                         </span>
                         <input type="date" name="end_date" value="{{ $endDate }}" class="form-control" id="end-date">
                     </div>
                 </div>
                 
                 <div class="col-md-4 col-sm-12">
-                    <button type="submit" class="btn btn-primary w-100">
+                    <button type="submit" class="btn btn-success w-100">
                         <i class="fas fa-filter me-1"></i> Terapkan Filter
                     </button>
                 </div>
@@ -55,7 +55,7 @@
             <div class="row g-0">
                 <div class="col-md-4 border-end">
                     <div class="text-center py-2">
-                        <div class="text-primary mb-1">
+                        <div class="text-success mb-1">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
                         <div class="text-muted small mb-1">Total Pendapatan Admin</div>
@@ -89,7 +89,7 @@
     <!-- Data Table -->
     <div class="card shadow-sm">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Detail Setoran</h6>
+            <h6 class="m-0 font-weight-bold text-success">Detail Setoran</h6>
             <div class="input-group input-group-sm" style="width: 250px;">
                 <input type="text" id="searchInput" class="form-control" placeholder="Cari data...">
                 <span class="input-group-text">
@@ -153,7 +153,7 @@
                     <i class="fas fa-search fa-3x text-muted mb-3"></i>
                     <h5 class="text-muted">Tidak ada data setoran</h5>
                     <p class="text-muted">Tidak ada data setoran pada rentang tanggal yang dipilih.</p>
-                    <a href="{{ route('admin.laporan.pendapatan') }}" class="btn btn-outline-primary mt-2">
+                    <a href="{{ route('admin.laporan.pendapatan') }}" class="btn btn-outline-success mt-2">
                         <i class="fas fa-sync-alt me-1"></i> Reset Filter
                     </a>
                 </div>

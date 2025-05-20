@@ -197,7 +197,7 @@
             setInterval(() => {
                 count = (count + 1) % 4;
                 dots.textContent = '.'.repeat(count);
-            }, 500);
+            }, 250);
         });
     </script>
 

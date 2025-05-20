@@ -14,15 +14,15 @@
     
     <div class="d-flex justify-content-between align-items-center px-4 pb-2">
         <div class="btn-group mb-3" role="group" aria-label="Filter Role">
-            <a href="/UserMaster?role=admin" class="btn btn-outline-primary {{ request('role') == 'admin' ? 'active' : '' }}">Admin</a>
-            <a href="/UserMaster?role=worker" class="btn btn-outline-primary {{ request('role') == 'worker' ? 'active' : '' }}">Worker</a>
+            <a href="/UserMaster?role=admin" class="btn btn-outline-success {{ request('role') == 'admin' ? 'active' : '' }}">Admin</a>
+            <a href="/UserMaster?role=worker" class="btn btn-outline-success {{ request('role') == 'worker' ? 'active' : '' }}">Worker</a>
         </div>
         <div>
             <form action="/UserMaster" method="GET">
                 <input type="hidden" name="role" value="{{ request('role') }}">
                 <div class="input-group mb-3">
                     <input style="width: 300px;" type="text" class="form-control" placeholder="Search..." name="searchuser" value="{{ request('searchuser') }}">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-success" type="submit">Search</button>
                 </div>
             </form>
         </div>

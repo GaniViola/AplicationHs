@@ -82,9 +82,30 @@ class OrderController extends Controller
             ], 500);
         }
     }
-    
 
-    // Mengambil riwayat pesanan user
+public function getWorkerHistory(Request $request)
+{
+    $request->validate([
+        'worker_id' => 'required|integer',
+    ]);
+
+    // Status yang menunjukkan pekerjaan sudah mulai/selesai
+    $statuses = ['proses', 'selesai_pengerjaan', 'pending_setoran', 'selesai'];
+
+    $orders = Orders::with('orderDetails.service')
+        ->where('worker_id', $request->worker_id)
+        ->whereIn('status', $statuses)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Riwayat pekerjaan berhasil diambil',
+        'data' => $orders
+    ]);
+}
+
+// Mengambil riwayat pesanan user
     public function history(Request $request)
     {
         $request->validate([
@@ -115,6 +136,5 @@ class OrderController extends Controller
         'data' => $orders
     ]);
 }
-
 
 }

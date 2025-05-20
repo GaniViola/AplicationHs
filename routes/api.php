@@ -5,6 +5,11 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\WorkPhotoController;
+use App\Http\Controllers\Api\WorkerOrderController;
+use App\Http\Controllers\Api\StatusPekerjaanController;
+use App\Http\Controllers\Api\StatistikWorkerController;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +48,17 @@ Route::post('/orders', [OrderController::class, 'store']);
 Route::get('/orders', [OrderController::class, 'history']);
 Route::get('/orders/user/{id}', [OrderController::class, 'getUserOrders']);
 
+//upload foto
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/my-orders', [WorkerOrderController::class, 'index']);
+    Route::post('/upload-image', [WorkPhotoController::class, 'store']);
+});
+
+//history pekerja
+Route::post('/get-worker-history', [OrderController::class, 'getWorkerHistory']);
+
+//status pekerjaan
+Route::middleware('auth:sanctum')->get('/status-pekerjaan', [StatusPekerjaanController::class, 'index']);
+
+//statistik pekerja
+Route::middleware(['auth:sanctum'])->get('/worker/statistik', [StatistikWorkerController::class, 'index']);

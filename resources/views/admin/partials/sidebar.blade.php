@@ -1,112 +1,283 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
     <!-- Kode HTML yang Ditingkatkan -->
-<a class="sidebar-brand" href="index.html">
-    <div class="brand-container">
-        <div class="brand-logo">
-            <img src="/images/logopolosputih.png" alt="HomeService Logo">
+    <a class="sidebar-brand" href="index.html">
+        <div class="brand-container">
+            <div class="brand-logo">
+                <img src="/images/logopolosputih.png" alt="HomeService Logo">
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">HOMESERVICE</span>
+                <span class="brand-subtitle">ADMIN PANEL</span>
+            </div>
         </div>
-        <div class="brand-text">
-            <span class="brand-name">HOMESERVICE</span>
-            <span class="brand-subtitle">ADMIN PANEL</span>
-        </div>
-    </div>
-</a>
+    </a>
 
-<!-- CSS yang Ditingkatkan -->
-<style>
-.sidebar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0.8rem 0.5rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    width: 100%;
-    background-color: #4e73df;
-    overflow: visible;
-    box-sizing: border-box;
-}
+    <!-- CSS yang Ditingkatkan -->
+    <style>
+    /* Warna utama - digunakan di seluruh komponen */
+    :root {
+        --primary-green: #1e8449;
+        --dark-green: #0e6029;
+        --light-green: #2ecc71;
+        --accent-green: #27ae60;
+        --white: #ffffff;
+        --light-gray: #f8f9fc;
+        --medium-gray: #eaecf4;
+        --dark-gray: #5a5c69;
+        --hover-light: rgba(30, 132, 73, 0.1);
+    }
+    
+    #accordionSidebar {
+        background-color: var(--white);
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        transition: all 0.3s;
+        max-height: 100vh;
+        overflow-y: auto;
+        position: relative;
+        scroll-behavior: smooth;
+        border-right: 1px solid var(--medium-gray);
+    }
+    
+    /* Custom scrollbar untuk sidebar */
+    #accordionSidebar::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    #accordionSidebar::-webkit-scrollbar-track {
+        background: var(--light-gray);
+    }
+    
+    #accordionSidebar::-webkit-scrollbar-thumb {
+        background: var(--primary-green);
+        border-radius: 10px;
+    }
+    
+    #accordionSidebar::-webkit-scrollbar-thumb:hover {
+        background: var(--dark-green);
+    }
 
-.brand-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-}
+    .sidebar-brand {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1.2rem 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        width: 100%;
+        background-color: var(--primary-green);
+        overflow: visible;
+        box-sizing: border-box;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
 
-.brand-logo {
-    margin-right: 0.25rem;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
+    .brand-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+    }
 
-.brand-logo img {
-    height: 35px;
-    width: auto;
-    /* Menghilangkan background putih pada gambar */
-    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
-}
+    .brand-logo {
+        margin-right: 0.5rem;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
 
-.brand-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    white-space: nowrap;
-    overflow: hidden;
-    flex-grow: 1;
-    max-width: calc(100% - 40px);
-}
+    .brand-logo img {
+        height: 35px;
+        width: auto;
+        filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.25));
+    }
 
-.brand-name {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.2;
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        white-space: nowrap;
+        overflow: hidden;
+        flex-grow: 1;
+        max-width: calc(100% - 40px);
+    }
 
-.brand-subtitle {
-    color: #e0e0e0;
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
+    .brand-name {
+        color: var(--white);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.2;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 
-/* Efek hover */
-.sidebar-brand:hover .brand-name {
-    color: #fdfdfd;
-    background: linear-gradient(90deg, #ffffff, #e0e0e0);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
+    .brand-subtitle {
+        color: var(--light-gray);
+        font-size: 9px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 
-.sidebar-brand:hover .brand-subtitle {
-    color: #ffffff;
-}
+    /* Efek hover */
+    .sidebar-brand:hover .brand-name {
+        color: var(--white);
+        text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+    }
 
-.sidebar-brand:hover .brand-logo img {
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
-}
+    .sidebar-brand:hover .brand-subtitle {
+        color: var(--white);
+    }
 
-/* Font import - hanya gunakan jika diperlukan */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-</style>
+    .sidebar-brand:hover .brand-logo img {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+    }
+
+    .sidebar-heading {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        color: var(--primary-green);
+        margin-top: 0.75rem;
+    }
+    
+    .nav-item .nav-link {
+        padding: 0.8rem 1rem;
+        margin: 0.2rem 0.7rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden;
+        color: var(--dark-gray);
+        font-weight: 500;
+    }
+    
+    .nav-item .nav-link:hover {
+        background-color: var(--hover-light);
+        transform: translateX(5px);
+        color: var(--primary-green);
+    }
+    
+    .nav-item .nav-link:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: var(--primary-green);
+        transform: scaleY(0);
+        transition: transform 0.2s;
+    }
+    
+    .nav-item .nav-link:hover:before {
+        transform: scaleY(1);
+    }
+    
+    .nav-item .nav-link i {
+        width: 1.5rem;
+        text-align: center;
+        margin-right: 0.8rem;
+        font-size: 0.9rem;
+        color: var(--primary-green);
+    }
+    
+    /* Style untuk menu aktif */
+    .nav-item .nav-link.active {
+        background-color: var(--primary-green);
+        color: var(--white);
+        font-weight: 600;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-item .nav-link.active i {
+        color: var(--white);
+    }
+    
+    .sidebar-divider {
+        border-top: 1px solid var(--medium-gray);
+        margin: 1rem 0;
+    }
+    
+    #sidebarToggle {
+        background-color: var(--light-gray);
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary-green);
+        transition: all 0.2s;
+        border-radius: 50%;
+        border: 1px solid var(--medium-gray);
+    }
+    
+    #sidebarToggle:hover {
+        background-color: var(--primary-green);
+        color: var(--white);
+    }
+    
+    .sidebar-card {
+        margin: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .sidebar-card-illustration {
+        transition: transform 0.2s;
+    }
+    
+    .sidebar-card:hover .sidebar-card-illustration {
+        transform: translateY(-5px);
+    }
+    
+    .sidebar-card .card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid var(--medium-gray);
+    }
+    
+    .sidebar-card .btn-primary {
+        background-color: var(--primary-green);
+        border-color: var(--primary-green);
+        color: var(--white);
+    }
+    
+    .sidebar-card .btn-primary:hover {
+        background-color: var(--dark-green);
+        border-color: var(--dark-green);
+    }
+
+    /* Font import */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .sidebar-brand {
+            height: 70px;
+            padding: 1rem;
+        }
+        
+        .nav-item .nav-link {
+            padding: 0.6rem 0.8rem;
+            margin: 0.1rem 0.5rem;
+        }
+    }
+    </style>
     
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -131,7 +302,7 @@
     <li class="nav-item">
         <a class="nav-link" href="/orders">
             <i class="fas fa-fw fa-clipboard-list"></i>
-            <span>Pesanan Masuk</span>
+            <span>Pesanan</span>
         </a>
     </li>
 
@@ -196,7 +367,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        <i class="fas fa-chart-line mr-2"></i>Analisis
+        <i class="fas fa-chart-line mr-2"></i>Laporan
     </div>
 
     <!-- Nav Item - Laporan Pendapatan -->
@@ -218,10 +389,10 @@
 
     <!-- Nav Item - Kinerja Pekerja -->
     <li class="nav-item">
-        <a class="nav-link" href="/laporan/kinerja">
-            <i class="fas fa-fw fa-chart-line"></i>
-            <span>Laporan Pekerja</span>
-        </a>
+       <a class="nav-link" href="/admin/laporan-pekerja">
+    <i class="fas fa-fw fa-chart-line"></i>
+    <span>Laporan Pekerja</span>
+</a>
     </li>
 
     <!-- Nav Item - Laporan Gaji Pekerja -->
@@ -245,13 +416,13 @@
 
     <!-- Sidebar Card - Pro Version -->
     <div class="sidebar-card d-none d-lg-flex mt-3 mb-5">
-        <div class="card bg-light text-primary shadow-sm">
+        <div class="card bg-light shadow-sm">
             <div class="card-body p-3">
                 <div class="text-center">
                     <img src="https://static.vecteezy.com/system/resources/previews/004/695/389/original/flat-illustration-of-rocket-used-for-print-app-web-advertising-etc-free-vector.jpg" 
                          alt="Rocket" class="sidebar-card-illustration mb-2" style="width: 50px;">
-                    <h6 class="font-weight-bold mb-1">HomeService Pro</h6>
-                    <p class="small mb-2">Platform manajemen layanan rumah terpercaya</p>
+                    <h6 class="font-weight-bold mb-1 text-primary">HomeService Pro</h6>
+                    <p class="small mb-2 text-muted">Platform manajemen layanan rumah terpercaya</p>
                     <a href="#" class="btn btn-primary btn-sm">
                         <i class="fas fa-rocket mr-1"></i> Upgrade
                     </a>
@@ -262,172 +433,6 @@
 
 </ul>
 <!-- End of Sidebar -->
-
-<!-- CSS untuk meningkatkan tampilan -->
-<style>
-    #accordionSidebar {
-        background: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s;
-        max-height: 100vh;
-        overflow-y: auto;
-        position: relative;
-        scroll-behavior: smooth; /* Untuk scroll yang halus */
-    }
-    
-    /* Custom scrollbar untuk sidebar */
-    #accordionSidebar::-webkit-scrollbar {
-        width: 5px;
-    }
-    
-    #accordionSidebar::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-    }
-    
-    #accordionSidebar::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-    }
-    
-    #accordionSidebar::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.5);
-    }
-    
-    .sidebar-brand {
-        height: 80px;
-        padding: 1.5rem 1rem;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .sidebar-brand-icon {
-        background-color: white;
-        color: #4e73df;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        margin-right: 0.5rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .sidebar-brand-text {
-        font-weight: 700;
-        font-size: 1.1rem;
-        letter-spacing: 0.5px;
-    }
-    
-    .sidebar-heading {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05rem;
-        color: rgba(255, 255, 255, 0.8);
-    }
-    
-    .nav-item .nav-link {
-        padding: 0.8rem 1rem;
-        margin: 0.2rem 0.7rem;
-        border-radius: 10px;
-        transition: all 0.2s;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .nav-item .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        transform: translateX(5px);
-    }
-    
-    .nav-item .nav-link:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 3px;
-        background-color: #fff;
-        transform: scaleY(0);
-        transition: transform 0.2s;
-    }
-    
-    .nav-item .nav-link:hover:before {
-        transform: scaleY(1);
-    }
-    
-    .nav-item .nav-link i {
-        width: 1.5rem;
-        text-align: center;
-        margin-right: 0.8rem;
-        font-size: 0.9rem;
-    }
-    
-    /* Stlye untuk menu aktif */
-    .nav-item .nav-link.active {
-        background-color: #fff;
-        color: #4e73df;
-        font-weight: 600;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .nav-item .nav-link.active i {
-        color: #4e73df;
-    }
-    
-    .sidebar-divider {
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        margin: 1rem 0;
-    }
-    
-    #sidebarToggle {
-        background-color: rgba(255, 255, 255, 0.2);
-        width: 2.5rem;
-        height: 2.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        transition: all 0.2s;
-    }
-    
-    #sidebarToggle:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-    
-    .sidebar-card {
-        margin: 1rem;
-        position: relative; /* Ubah dari sticky ke relative */
-        z-index: 1;
-    }
-    
-    .sidebar-card-illustration {
-        transition: transform 0.2s;
-    }
-    
-    .sidebar-card:hover .sidebar-card-illustration {
-        transform: translateY(-5px);
-    }
-    
-    .sidebar-card .card {
-        border: none;
-        border-radius: 15px;
-        overflow: hidden;
-    }
-    
-    .sidebar-card .btn-outline-primary {
-        border-color: #4e73df;
-        color: #4e73df;
-    }
-    
-    .sidebar-card .btn-outline-primary:hover {
-        background-color: #4e73df;
-        color: white;
-    }
-</style>
 
 <!-- JavaScript untuk efek aktif pada menu dan mengingat posisi scroll -->
 <script>

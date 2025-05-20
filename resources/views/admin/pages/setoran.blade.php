@@ -111,7 +111,7 @@
 @section('content')
 <div class="container py-4">
     <div class="card border-0">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
             <div>
                 <h4 class="mb-0 d-inline-flex align-items-center">
                     <i class="fas fa-hand-holding-usd me-2"></i>
@@ -217,6 +217,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')
@@ -251,4 +252,5 @@
         }, 300);
     });
 </script>
+
 @endsection
