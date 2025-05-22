@@ -53,4 +53,40 @@ class LaporanpendapatanController extends Controller
             'endDate' => $endDate
         ]);
     }
+    public function exportPdf(Request $request)
+    {
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        // Get pendapatan data
+        $pendapatan = DB::table('setorans')
+            ->select(
+                DB::raw('COUNT(*) as total_transaksi'),
+                DB::raw('SUM(jumlah_admin) as total_pendapatan'),
+                DB::raw('MAX(tanggal_setoran) as terakhir_setoran')
+            )
+            ->whereBetween('tanggal_setoran', [$startDate, $endDate])
+            ->first();
+
+        // Get setoran details
+        $setorans = Setoran::with(['order.customer', 'worker'])
+            ->whereBetween('tanggal_setoran', [$startDate, $endDate])
+            ->orderBy('tanggal_setoran', 'desc')
+            ->get();
+
+        $pdf = PDF::loadView('admin.pages.pendapatan_pdf', compact('pendapatan', 'setorans', 'startDate', 'endDate'));
+        $pdfName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.pdf';
+
+        return $pdf->download($pdfName);
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        $fileName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.xlsx';
+
+        return Excel::download(new PendapatanExport($startDate, $endDate), $fileName);
+    }
 }

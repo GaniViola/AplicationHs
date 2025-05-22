@@ -127,75 +127,10 @@ class SetoranController extends Controller
         return redirect()->route('admin.setoran.index')->with('success', 'Setoran berhasil diperbarui.');
     }
     //laporan gaji didapat dari 80% dari total setoran
-    public function laporanGaji(Request $request)
-    {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
 
-        $query = Setoran::select(
-                'worker_id',
-                DB::raw('SUM(jumlah_pekerja) as total_gaji'),
-                DB::raw('COUNT(*) as jumlah_setoran'),
-                DB::raw('MAX(tanggal_setoran) as terakhir_setor')
-            )
-            ->where('status_setoran', 'selesai')
-            ->with('worker')
-            ->groupBy('worker_id');
-
-        if ($startDate && $endDate) {
-            $query->whereBetween('tanggal_setoran', [
-                Carbon::parse($startDate)->startOfDay(),
-                Carbon::parse($endDate)->endOfDay()
-            ]);
-        }
-
-        $gajiPerPekerja = $query->get();
-
-        return view('admin.pages.laporan-gaji', [
-            'title' => 'Laporan Gaji Pekerja',
-            'gajiPerPekerja' => $gajiPerPekerja,
-            'startDate' => $startDate,
-            'endDate' => $endDate
-        ]);
-    }
   //laporan pendapatan didapat dari 20% dari total setoran
 
 
     //unduh laporan
-    public function exportPdf(Request $request)
-    {
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
-
-        // Get pendapatan data
-        $pendapatan = DB::table('setorans')
-            ->select(
-                DB::raw('COUNT(*) as total_transaksi'),
-                DB::raw('SUM(jumlah_admin) as total_pendapatan'),
-                DB::raw('MAX(tanggal_setoran) as terakhir_setoran')
-            )
-            ->whereBetween('tanggal_setoran', [$startDate, $endDate])
-            ->first();
-
-        // Get setoran details
-        $setorans = Setoran::with(['order.customer', 'worker'])
-            ->whereBetween('tanggal_setoran', [$startDate, $endDate])
-            ->orderBy('tanggal_setoran', 'desc')
-            ->get();
-
-        $pdf = PDF::loadView('admin.pages.pendapatan_pdf', compact('pendapatan', 'setorans', 'startDate', 'endDate'));
-        $pdfName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.pdf';
-
-        return $pdf->download($pdfName);
-    }
-
-    public function exportExcel(Request $request)
-    {
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
-
-        $fileName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.xlsx';
-
-        return Excel::download(new PendapatanExport($startDate, $endDate), $fileName);
-    }
+    
 }

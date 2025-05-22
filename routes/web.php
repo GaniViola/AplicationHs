@@ -58,7 +58,7 @@ Route::middleware('guest')->group(function(){
     abort(404);
     });
 
-    Route::get('laporan pendapatan', [AuthController::class, 'showLoginForm']);
+    Route::get('/secure-area/login', [AuthController::class, 'showLoginForm']);
     Route::post('/secure-area/login', [AuthController::class, 'login'])->name('login');
 });
 
@@ -69,8 +69,6 @@ Route::middleware('auth')->group(function(){
             'title' => 'Dashboard'
         ]);
     });
-
-
     // ✅ ROUTE SETORAN ADMIN
     Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
         Route::get('/', 'index')->name('index');           // admin.setoran.index
@@ -79,15 +77,14 @@ Route::middleware('auth')->group(function(){
         Route::put('/{id}', 'update')->name('update');     // admin.setoran.update
     });
     Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/laporan-gaji', [SetoranController::class, 'laporanGaji'])->name('gaji.index');
+    Route::get('/laporan-gaji', [LaporangajiController::class, 'laporanGaji'])->name('gaji.index');
+    });
+    Route::get('/laporan/pendapatan', [LaporanpendapatanController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
+    // Route untuk export PDF
+    Route::get('/laporan/pendapatan/pdf', [LaporanpendapatanController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
 
-});
- Route::get('/laporan/pendapatan', [SetoranController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
- // Route untuk export PDF
-Route::get('/laporan/pendapatan/pdf', [SetoranController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
-
-// Route untuk export Excel
-Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
+    // Route untuk export Excel
+    Route::get('/laporan/pendapatan/excel', [LaporanpendapatanController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
     // category
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'store']);
@@ -119,7 +116,3 @@ Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'
    Route::get('/admin/laporan-pekerja', [LaporanpekerjaController::class, 'index'])->name('admin.laporan.pekerja');
 
 });
-
-
-
-
