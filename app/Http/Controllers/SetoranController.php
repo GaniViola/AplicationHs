@@ -158,48 +158,8 @@ class SetoranController extends Controller
             'endDate' => $endDate
         ]);
     }
-  //laporan pendapatan didapat dari 20% dari total setoran  
-    public function laporanPendapatan(Request $request)
-    {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+  //laporan pendapatan didapat dari 20% dari total setoran
 
-        $query = Setoran::select(
-            DB::raw('SUM(jumlah_admin) as total_pendapatan'),
-            DB::raw('COUNT(*) as total_transaksi'),
-            DB::raw('MAX(tanggal_setoran) as terakhir_setoran')
-        )->where('status_setoran', 'selesai');
-
-        if ($startDate && $endDate) {
-            $query->whereBetween('tanggal_setoran', [
-                Carbon::parse($startDate)->startOfDay(),
-                Carbon::parse($endDate)->endOfDay()
-            ]);
-        }
-
-        $pendapatan = $query->first();
-
-        // Ambil semua data setorannya juga (untuk tabel detail)
-        $setorans = Setoran::with(['order.customer', 'worker'])
-            ->where('status_setoran', 'selesai');
-
-        if ($startDate && $endDate) {
-            $setorans->whereBetween('tanggal_setoran', [
-                Carbon::parse($startDate)->startOfDay(),
-                Carbon::parse($endDate)->endOfDay()
-            ]);
-        }
-
-        $setorans = $setorans->orderBy('tanggal_setoran', 'desc')->get();
-
-        return view('admin.pages.laporan-pendapatan', [
-            'title' => 'Laporan Pendapatan Admin',
-            'pendapatan' => $pendapatan,
-            'setorans' => $setorans,
-            'startDate' => $startDate,
-            'endDate' => $endDate
-        ]);
-    }
 
     //unduh laporan
     public function exportPdf(Request $request)
@@ -225,7 +185,7 @@ class SetoranController extends Controller
 
         $pdf = PDF::loadView('admin.pages.pendapatan_pdf', compact('pendapatan', 'setorans', 'startDate', 'endDate'));
         $pdfName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.pdf';
-        
+
         return $pdf->download($pdfName);
     }
 
@@ -233,9 +193,9 @@ class SetoranController extends Controller
     {
         $startDate = $request->start_date;
         $endDate = $request->end_date;
-        
+
         $fileName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.xlsx';
-        
+
         return Excel::download(new PendapatanExport($startDate, $endDate), $fileName);
     }
 }

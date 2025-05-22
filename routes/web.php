@@ -3,6 +3,9 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LaporangajiController;
+use App\Http\Controllers\LaporanpekerjaController;
+use App\Http\Controllers\LaporanpendapatanController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UserController;
@@ -18,7 +21,7 @@ Route::middleware('guest')->group(function(){
     abort(404);
     });
 
-    Route::get('/secure-area/login', [AuthController::class, 'showLoginForm']);
+    Route::get('laporan pendapatan', [AuthController::class, 'showLoginForm']);
     Route::post('/secure-area/login', [AuthController::class, 'login'])->name('login');
 });
 
@@ -30,7 +33,7 @@ Route::middleware('auth')->group(function(){
         ]);
     });
 
-    
+
     // ✅ ROUTE SETORAN ADMIN
     Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
         Route::get('/', 'index')->name('index');           // admin.setoran.index
@@ -40,15 +43,15 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/laporan-gaji', [SetoranController::class, 'laporanGaji'])->name('gaji.index');
- 
+    Route::get('/laporan-gaji', [LaporangajiController::class, 'laporanGaji'])->name('gaji.index');
+
 });
- Route::get('/laporan/pendapatan', [SetoranController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
+ Route::get('/laporan/pendapatan', [LaporanpendapatanController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
  // Route untuk export PDF
-Route::get('/laporan/pendapatan/pdf', [SetoranController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
+Route::get('/laporan/pendapatan/pdf', [LaporanpendapatanController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
 
 // Route untuk export Excel
-Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
+Route::get('/laporan/pendapatan/excel', [LaporanpendapatanController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
     // category
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'store']);
@@ -82,7 +85,7 @@ Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('destroyuser');
 
     //laporan foto pekerja
-   Route::get('/admin/laporan-pekerja', [WorkPhotoController::class, 'index'])->name('admin.laporan.pekerja');
+   Route::get('/admin/laporan-pekerja', [LaporanpekerjaController::class, 'index'])->name('admin.laporan.pekerja');
 
 });
 
