@@ -69,13 +69,7 @@ Route::middleware('auth')->group(function(){
             'title' => 'Dashboard'
         ]);
     });
-    // ✅ ROUTE SETORAN ADMIN
-    Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
-        Route::get('/', 'index')->name('index');           // admin.setoran.index
-        Route::get('/create', 'create')->name('create');   // admin.setoran.create
-        Route::post('/', 'store')->name('store');          // admin.setoran.store
-        Route::put('/{id}', 'update')->name('update');     // admin.setoran.update
-    });
+   
     Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/laporan-gaji', [LaporangajiController::class, 'laporanGaji'])->name('gaji.index');
     });
