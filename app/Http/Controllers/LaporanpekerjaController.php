@@ -1,8 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Setoran;
 use Illuminate\Http\Request;
 use App\Models\WorkPhoto;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class LaporanpekerjaController extends Controller
 {
@@ -37,5 +41,36 @@ class LaporanpekerjaController extends Controller
     }
 
     return view('admin.pages.laporanpekerja', compact('workPhotos', 'title'));
+    }
+        public function exportPdf(Request $request)
+    {
+        try{
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        // Get pendapatan data
+        $pendapatan = DB::table('setorans')
+            ->select(
+                DB::raw('COUNT(*) as total_transaksi'),
+                DB::raw('SUM(jumlah_admin) as total_pendapatan'),
+                DB::raw('MAX(tanggal_setoran) as terakhir_setoran')
+            )
+            ->whereBetween('tanggal_setoran', [$startDate, $endDate])
+            ->first();
+
+        // Get setoran details
+        $setorans = Setoran::with(['order.customer', 'worker'])
+            ->whereBetween('tanggal_setoran', [$startDate, $endDate])
+            ->orderBy('tanggal_setoran', 'desc')
+            ->get();
+
+        $pdf = Pdf::loadView('admin.pages.laporanpekerja_pdf', compact('pendapatan', 'setorans', 'startDate', 'endDate'));
+        $pdfName = 'laporan_pendapatan_' . str_replace('-', '', $startDate) . '_' . str_replace('-', '', $endDate) . '.pdf';
+
+        return $pdf->download($pdfName);
+            }
+            catch (\Exception $e) {
+                Log::error('Error exporting PDF: ' . $e->getMessage());
+            }
     }
 }

@@ -82,7 +82,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/laporan/pendapatan', [LaporanpendapatanController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
     // Route untuk export PDF
     Route::get('/laporan/pendapatan/pdf', [LaporanpendapatanController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
-
+    Route::get( '/laporan/gaji/pdf', [LaporangajiController::class, 'exportPdf'])->name('admin.laporan.gaji.pdf');
+    Route::get('/laporan/pekerja/Pdf', [LaporanpekerjaController::class, 'exportPdf'])->name('admin.laporan.pekerja.pdf');
     // Route untuk export Excel
     Route::get('/laporan/pendapatan/excel', [LaporanpendapatanController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
     // category

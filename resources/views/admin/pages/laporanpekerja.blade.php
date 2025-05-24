@@ -17,10 +17,9 @@
                 Refresh
             </button>
             <div class="dropdown">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                    <i class="fas fa-download me-1"></i>
-                    Export
-                </button>
+                <a href="{{ route('admin.laporan.pekerja.pdf') }}" class="btn btn-sm btn-outline-success">
+                <i class="fas fa-file-excel me-1"></i> Export
+            </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#"><i class="fas fa-file-pdf me-2"></i>PDF</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fas fa-file-excel me-2"></i>Excel</a></li>
