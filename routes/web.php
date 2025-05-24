@@ -84,11 +84,7 @@ Route::middleware('auth')->group(function(){
     // Route untuk export Excel
     Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
 
-    Route::get('/dashboard', function() {
-        return view('admin.pages.home', [
-            'title' => 'Dashboard'
-        ]);
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index']);
    // ✅ ROUTE SETORAN ADMIN
    Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
     Route::get('/', 'index')->name('index');           // admin.setoran.index

@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $pendingrequests = Orders::PendingRequests();
         $persentaseSelesai = Orders::persentaseSelesai();
         $chartPerbulan = Setoran::getSetoranPerBulan();
-
+        
         return view('admin.pages.home', [
             'title'             => 'Dashboard',
             'EarningsMonthly'   => $earningsmonthly,

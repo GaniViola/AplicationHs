@@ -378,15 +378,6 @@
     </a>
 </li>
 
-
-    <!-- Nav Item - Statistik Layanan -->
-    <li class="nav-item">
-        <a class="nav-link" href="/laporan/layanan">
-            <i class="fas fa-fw fa-chart-bar"></i>
-            <span>Statistik Layanan</span>
-        </a>
-    </li>
-
     <!-- Nav Item - Kinerja Pekerja -->
     <li class="nav-item">
        <a class="nav-link" href="/admin/laporan-pekerja">
