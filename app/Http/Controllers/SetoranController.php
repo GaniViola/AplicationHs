@@ -6,13 +6,6 @@ use App\Models\Setoran;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\PendapatanExport;
-use Barryvdh\DomPDF\Facade\Pdf;
-
-
-
 
 class SetoranController extends Controller
 {
@@ -126,11 +119,5 @@ class SetoranController extends Controller
 
         return redirect()->route('admin.setoran.index')->with('success', 'Setoran berhasil diperbarui.');
     }
-    //laporan gaji didapat dari 80% dari total setoran
-
-  //laporan pendapatan didapat dari 20% dari total setoran
-
-
-    //unduh laporan
     
 }

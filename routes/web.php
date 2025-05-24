@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporangajiController;
 use App\Http\Controllers\LaporanpekerjaController;
 use App\Http\Controllers\LaporanpendapatanController;
@@ -64,18 +65,33 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', function() {
-        return view('admin.pages.home', [
-            'title' => 'Dashboard'
-        ]);
-    });
-    // ✅ ROUTE SETORAN ADMIN
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
     Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
         Route::get('/', 'index')->name('index');           // admin.setoran.index
         Route::get('/create', 'create')->name('create');   // admin.setoran.create
         Route::post('/', 'store')->name('store');          // admin.setoran.store
         Route::put('/{id}', 'update')->name('update');     // admin.setoran.update
     });
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/laporan-gaji', [SetoranController::class, 'laporanGaji'])->name('gaji.index');
+    });
+    Route::get('/laporan/pendapatan', [SetoranController::class, 'laporanPendapatan'])->name('admin.laporan.pendapatan');
+    // Route untuk export PDF
+    Route::get('/laporan/pendapatan/pdf', [SetoranController::class, 'exportPdf'])->name('admin.pages.pendapatan.pdf');
+
+    // Route untuk export Excel
+    Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+   // ✅ ROUTE SETORAN ADMIN
+   Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
+    Route::get('/', 'index')->name('index');           // admin.setoran.index
+    Route::get('/create', 'create')->name('create');   // admin.setoran.create
+    Route::post('/', 'store')->name('store');          // admin.setoran.store
+    Route::put('/{id}', 'update')->name('update');     // admin.setoran.update
+});
     Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/laporan-gaji', [LaporangajiController::class, 'laporanGaji'])->name('gaji.index');
     });

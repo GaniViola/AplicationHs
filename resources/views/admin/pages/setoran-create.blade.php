@@ -106,8 +106,37 @@
                                     <i class="bi bi-currency-exchange me-2"></i>Informasi Pembayaran
                                 </h5>
 
-                                <div class="row g-3">
-                                    <div class="col-md-4">
+                                <!-- Total Tagihan and Admin Share aligned like worker/customer -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="mb-0">
+                                            <label class="form-label fw-bold">Total Tagihan</label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text bg-white border-end-0">
+                                                    <i class="bi bi-tag-fill"></i>
+                                                </span>
+                                                <input type="text" id="total_order" class="form-control form-control-lg bg-white border-start-0" 
+                                                    disabled placeholder="Total tagihan order">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-0">
+                                            <label class="form-label fw-bold">Total untuk Admin (20%)</label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text bg-white border-end-0">
+                                                    <i class="bi bi-wallet2"></i>
+                                                </span>
+                                                <input type="text" id="admin_share" class="form-control form-control-lg bg-white border-start-0" 
+                                                    disabled placeholder="Bagian untuk admin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Jumlah Setoran below total tagihan -->
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="mb-0">
                                             <label for="jumlah_setoran" class="form-label fw-bold">Jumlah Setoran</label>
                                             <div class="input-group input-group-lg">
@@ -129,30 +158,6 @@
                                             @error('jumlah_setoran')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-0">
-                                            <label class="form-label fw-bold">Total Tagihan</label>
-                                            <div class="input-group input-group-lg">
-                                                <span class="input-group-text bg-white border-end-0">
-                                                    <i class="bi bi-tag-fill"></i>
-                                                </span>
-                                                <input type="text" id="total_order" class="form-control form-control-lg bg-white border-start-0" 
-                                                    disabled placeholder="Total tagihan order">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-0">
-                                            <label class="form-label fw-bold">Total untuk Admin (20%)</label>
-                                            <div class="input-group input-group-lg">
-                                                <span class="input-group-text bg-white border-end-0">
-                                                    <i class="bi bi-wallet2"></i>
-                                                </span>
-                                                <input type="text" id="admin_share" class="form-control form-control-lg bg-white border-start-0" 
-                                                    disabled placeholder="Bagian untuk admin">
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
