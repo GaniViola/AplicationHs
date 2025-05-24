@@ -25,6 +25,28 @@ class Orders extends Model
         'worker_id'
     ];
 
+    public static function PendingRequests() {
+        return self::where('status', 'pending')->count();
+    }
+
+    public static function totalSetoran()
+    {
+        return self::count();
+    }
+
+    public static function jumlahSelesai()
+    {
+        return self::where('status', 'selesai')->count();
+    }
+
+    public static function persentaseSelesai()
+    {
+        $total = self::totalSetoran();
+        $selesai = self::jumlahSelesai();
+
+        return $total > 0 ? round(($selesai / $total) * 100, 2) : 0;
+    }
+
     public $timestamps = false; // INI TAMBAHKAN KARENA TABLE orders TIDAK PUNYA created_at, updated_at
 
     public function user()

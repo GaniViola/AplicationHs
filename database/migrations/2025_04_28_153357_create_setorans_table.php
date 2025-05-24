@@ -15,6 +15,8 @@ class CreateSetoransTable extends Migration
             $table->foreignId('worker_id')->constrained('users')->onDelete('cascade');
     
             $table->integer('jumlah_setoran');
+            $table->integer('jumlah_admin')->default(0);
+            $table->integer('jumlah_pekerja')->default(0);
             $table->timestamp('tanggal_setoran')->useCurrent();
     
             $table->enum('status_setoran', ['pending', 'disetorkan', 'selesai', 'kurang'])->default('pending');

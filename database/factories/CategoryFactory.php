@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
  */
+
 class CategoryFactory extends Factory
 {
     /**
@@ -15,6 +16,7 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
         $name = $this->faker->unique()->words(2, true); // generate nama category

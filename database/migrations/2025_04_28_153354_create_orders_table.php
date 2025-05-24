@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->enum('status', ['pending', 'proses', 'selesai_pengerjaan', 'pending_setoran', 'selesai'])->default('pending');
             $table->enum('metode_pembayaran', ['tunai', 'non-tunai'])->default('tunai');
             $table->timestamps();
+            $table->unsignedBigInteger('worker_id')->nullable();
         });
     }
 
