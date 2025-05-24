@@ -1,102 +1,90 @@
-<footer class="footer-section">
-    <div class="container relative">
-    
-      <div class="sofa-img">
-        <img src="images/sofa.png" alt="Image" class="img-fluid">
-      </div>
-    
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="subscription-form">
-            <h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
-    
-            <form action="#" class="row g-3">
-              <div class="col-auto">
-                <input type="text" class="form-control" placeholder="Enter your name">
-              </div>
-              <div class="col-auto">
-                <input type="email" class="form-control" placeholder="Enter your email">
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-primary">
-                  <span class="fa fa-paper-plane"></span>
-                </button>
-              </div>
-            </form>
-    
-          </div>
-        </div>
-      </div>
-    
-      <div class="row g-5 mb-5">
-        <div class="col-lg-4">
-          <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
-          <p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
-    
-          <ul class="list-unstyled custom-social">
-            <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-            <li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-            <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-            <li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
-          </ul>
-        </div>
-    
-        <div class="col-lg-8">
-          <div class="row links-wrap">
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
+<!-- Footer Start -->
+<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+    <div class="container py-5 border-start-0 border-end-0" style="border: 1px solid; border-color: rgb(255, 255, 255, 0.08);">
+        <div class="row g-5">
+            <!-- Footer Brand & App Promo -->
+            <div class="col-md-6 col-lg-6 col-xl-4">
+                <div class="footer-item">
+                    <a href="{{ route('home') }}" class="p-0">
+                         <img src="/images/logopolosputih.png" alt="Logo" style="height: 50px; margin-right: 10px;">
+                         <span class="text-white fw-bold" style="font-size: 1.2rem;">Home Service</span>
+                    
+                    </a>
+                    <p class="mb-4">Home Service membantu Anda mengelola kebutuhan servis rumah secara mudah dan cepat. Unduh aplikasi kami untuk kemudahan lebih lanjut.</p>
+                    <div class="d-flex">
+                        <a href="https://apps.apple.com/us/app/stocker/id123456789" class="bg-primary d-flex rounded align-items-center py-2 px-3 me-2" target="_blank">
+                            <i class="fas fa-apple-alt text-white"></i>
+                            <div class="ms-3">
+                                <small class="text-white">Download on the</small>
+                                <h6 class="text-white">App Store</h6>
+                            </div>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.stocker.app" class="bg-dark d-flex rounded align-items-center py-2 px-3 ms-2" target="_blank">
+                            <i class="fas fa-play text-primary"></i>
+                            <div class="ms-3">
+                                <small class="text-white">Get it on</small>
+                                <h6 class="text-white">Google Play</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
-    
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Knowledge base</a></li>
-                <li><a href="#">Live chat</a></li>
-              </ul>
+            <!-- Quick Links -->
+            <div class="col-md-6 col-lg-6 col-xl-2">
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                    <a href="{{ route('feature') }}"><i class="fas fa-angle-right me-2"></i> Feature</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Attractions</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Tickets</a>
+                    <a href="{{ route('blog') }}"><i class="fas fa-angle-right me-2"></i> Blog</a>
+                    <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i> Contact us</a>
+                </div>
             </div>
-    
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Our team</a></li>
-                <li><a href="#">Leadership</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-              </ul>
+            <!-- Support Links -->
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">Support</h4>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Disclaimer</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Support</a>
+                    <a href="{{ route('faq') }}"><i class="fas fa-angle-right me-2"></i> FAQ</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Help</a>
+                </div>
             </div>
-    
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">Nordic Chair</a></li>
-                <li><a href="#">Kruzo Aero</a></li>
-                <li><a href="#">Ergonomic Chair</a></li>
-              </ul>
+            <!-- Contact Info -->
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">Contact Info</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-map-marker-alt text-primary me-3"></i>
+                        <p class="text-white mb-0">Jl. Raya Situbondo,Blindungan, Kec. Bondowoso, Kabupaten Bondowoso, Jawa Timur 68211</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-envelope text-primary me-3"></i>
+                        <p class="text-white mb-0">cs@homeservice.id</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-phone-alt text-primary me-3"></i>
+                        <p class="text-white mb-0">(+62) 812-3456-7890</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fab fa-firefox-browser text-primary me-3"></i>
+                        <p class="text-white mb-0">support@homeservice.id</p>
+                    </div>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-sm-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f text-white"></i></a>
+                        <a class="btn btn-primary btn-sm-square rounded-circle me-3" href="#"><i class="fab fa-twitter text-white"></i></a>
+                        <a class="btn btn-primary btn-sm-square rounded-circle me-3" href="#"><i class="fab fa-instagram text-white"></i></a>
+                        <a class="btn btn-primary btn-sm-square rounded-circle me-0" href="https://www.tiktok.com/@username" target="_blank">
+                        <i class="fab fa-tiktok text-white"></i>
+                        </a>
+
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-    
-      </div>
-    
-      <div class="border-top copyright">
-        <div class="row pt-4">
-          <div class="col-lg-6">
-            <p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a hreff="https://themewagon.com">ThemeWagon</a>  <!-- License information: https://untree.co/license/ -->
-          </p>
-          </div>
-    
-          <div class="col-lg-6 text-center text-lg-end">
-            <ul class="list-unstyled d-inline-flex ms-auto">
-              <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </div>
-    
-        </div>
-      </div>
-    
     </div>
-    </footer>
+</div>
+<!-- Footer End -->

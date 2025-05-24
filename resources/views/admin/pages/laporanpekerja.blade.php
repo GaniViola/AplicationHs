@@ -87,14 +87,14 @@
                                 $details = $order->orderDetails ?? collect();
                                 $layanan = optional($details->first())->service->name ?? '-';
                                 $customer = optional($order->customer)->username ?? '-';
-                                $tanggal = optional($order)->tanggal_pemesanan 
-                                    ? \Carbon\Carbon::parse($order->tanggal_pemesanan)->format('d-m-Y') 
+                                $tanggal = optional($order)->tanggal_pemesanan
+                                    ? \Carbon\Carbon::parse($order->tanggal_pemesanan)->format('d-m-Y')
                                     : '-';
                             @endphp
-                            <tr class="work-row" 
-                                data-customer="{{ strtolower($customer) }}" 
-                                data-worker="{{ strtolower(optional($foto->worker)->username ?? '-') }}" 
-                                data-service="{{ strtolower($layanan) }}" 
+                            <tr class="work-row"
+                                data-customer="{{ strtolower($customer) }}"
+                                data-worker="{{ strtolower(optional($foto->worker)->username ?? '-') }}"
+                                data-service="{{ strtolower($layanan) }}"
                                 data-date="{{ $tanggal }}"
                                 data-original-index="{{ $i }}">
                                 <td class="text-center align-middle">
@@ -103,11 +103,11 @@
                                 <td class="text-center align-middle">
                                     @if($foto->photo_before)
                                         <div class="photo-container">
-                                            <img src="{{ asset('storage/' . $foto->photo_before) }}" 
-                                                 class="img-thumbnail photo-preview" 
-                                                 width="80" 
+                                            <img src="{{ asset('storage/' . $foto->photo_before) }}"
+                                                 class="img-thumbnail photo-preview"
+                                                 width="80"
                                                  style="cursor: pointer; transition: transform 0.2s;"
-                                                 data-bs-toggle="modal" 
+                                                 data-bs-toggle="modal"
                                                  data-bs-target="#photoModal"
                                                  data-photo="{{ asset('storage/' . $foto->photo_before) }}"
                                                  data-title="Foto Sebelum - {{ $customer }}"
@@ -127,11 +127,11 @@
                                 <td class="text-center align-middle">
                                     @if($foto->photo_after)
                                         <div class="photo-container">
-                                            <img src="{{ asset('storage/' . $foto->photo_after) }}" 
-                                                 class="img-thumbnail photo-preview" 
-                                                 width="80" 
+                                            <img src="{{ asset('storage/' . $foto->photo_after) }}"
+                                                 class="img-thumbnail photo-preview"
+                                                 width="80"
                                                  style="cursor: pointer; transition: transform 0.2s;"
-                                                 data-bs-toggle="modal" 
+                                                 data-bs-toggle="modal"
                                                  data-bs-target="#photoModal"
                                                  data-photo="{{ asset('storage/' . $foto->photo_after) }}"
                                                  data-title="Foto Sesudah - {{ $customer }}"
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const button = event.relatedTarget;
         const photoUrl = button.getAttribute('data-photo');
         const title = button.getAttribute('data-title');
-        
+
         currentPhotoUrl = photoUrl;
         modalPhoto.src = photoUrl;
         photoModal.querySelector('.modal-title').textContent = title;
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const button = event.relatedTarget;
         const catatan = button.getAttribute('data-catatan');
         const customer = button.getAttribute('data-customer');
-        
+
         catatanModal.querySelector('.modal-title').textContent = `Catatan untuk ${customer}`;
         document.getElementById('catatanContent').textContent = catatan;
     });
@@ -369,8 +369,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const service = row.getAttribute('data-service');
             const date = row.getAttribute('data-date');
 
-            let matchesSearch = customer.includes(searchTerm) || 
-                              worker.includes(searchTerm) || 
+            let matchesSearch = customer.includes(searchTerm) ||
+                              worker.includes(searchTerm) ||
                               service.includes(searchTerm);
 
             let matchesWorker = !workerFilter || worker === workerFilter;
@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (dateFilter && date !== '-') {
                 const rowDate = new Date(date.split('-').reverse().join('-'));
                 const today = new Date();
-                
+
                 switch(dateFilter) {
                     case 'today':
                         matchesDate = rowDate.toDateString() === today.toDateString();
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         matchesDate = rowDate >= weekAgo;
                         break;
                     case 'month':
-                        matchesDate = rowDate.getMonth() === today.getMonth() && 
+                        matchesDate = rowDate.getMonth() === today.getMonth() &&
                                     rowDate.getFullYear() === today.getFullYear();
                         break;
                 }
@@ -405,10 +405,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayPage() {
         const tableBody = document.getElementById('tableBody');
         const emptyRow = document.getElementById('emptyRow');
-        
+
         // Hide all rows first
         allRows.forEach(row => row.style.display = 'none');
-        
+
         if (filteredRows.length === 0) {
             if (emptyRow) {
                 emptyRow.style.display = '';
@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateInfo() {
         const totalEntries = filteredRows.length;
-        
+
         document.getElementById('showingStart').textContent = totalEntries > 0 ? 1 : 0;
         document.getElementById('showingEnd').textContent = totalEntries;
         document.getElementById('totalEntries').textContent = totalEntries;
@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Memuat...';
         btn.disabled = true;
-        
+
         setTimeout(() => {
             location.reload();
         }, 500);

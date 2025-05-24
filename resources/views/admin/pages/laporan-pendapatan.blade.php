@@ -28,7 +28,7 @@
                         <input type="date" name="start_date" value="{{ $startDate }}" class="form-control" id="start-date">
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 col-sm-12">
                     <label class="form-label mb-1">Sampai Tanggal:</label>
                     <div class="input-group">
@@ -38,7 +38,7 @@
                         <input type="date" name="end_date" value="{{ $endDate }}" class="form-control" id="end-date">
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 col-sm-12">
                     <button type="submit" class="btn btn-success w-100">
                         <i class="fas fa-filter me-1"></i> Terapkan Filter
@@ -62,7 +62,7 @@
                         <div class="h4 mb-0">Rp {{ number_format($pendapatan->total_pendapatan, 0, ',', '.') }}</div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 border-end">
                     <div class="text-center py-2">
                         <div class="text-info mb-1">
@@ -72,7 +72,7 @@
                         <div class="h4 mb-0">{{ $pendapatan->total_transaksi }}</div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4">
                     <div class="text-center py-2">
                         <div class="text-success mb-1">
@@ -173,7 +173,7 @@
             searchInput.addEventListener('keyup', function() {
                 const searchTerm = this.value.toLowerCase();
                 const tableRows = document.querySelectorAll('#dataTable tbody tr');
-                
+
                 tableRows.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     row.style.display = text.includes(searchTerm) ? '' : 'none';
@@ -184,7 +184,7 @@
         // Add datepicker enhancements
         const startDate = document.getElementById('start-date');
         const endDate = document.getElementById('end-date');
-        
+
         if (startDate && endDate) {
             startDate.addEventListener('change', function() {
                 endDate.min = this.value;
@@ -192,7 +192,7 @@
                     endDate.value = this.value;
                 }
             });
-            
+
             endDate.addEventListener('change', function() {
                 startDate.max = this.value;
                 if (startDate.value && startDate.value > this.value) {
@@ -200,7 +200,7 @@
                 }
             });
         }
-        
+
         // Set initial min/max dates
         if (startDate && endDate && startDate.value && endDate.value) {
             endDate.min = startDate.value;

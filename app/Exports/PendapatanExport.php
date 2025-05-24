@@ -34,9 +34,9 @@ class PendapatanExport implements FromCollection, WithHeadings, WithTitle, WithM
             ->whereBetween('tanggal_setoran', [$this->startDate, $this->endDate])
             ->orderBy('tanggal_setoran', 'desc')
             ->get();
-            
+
         $this->rowCount = $setorans->count() + 8; // Rows for data + header row + summary rows
-        
+
         return $setorans;
     }
 
@@ -57,7 +57,7 @@ class PendapatanExport implements FromCollection, WithHeadings, WithTitle, WithM
     {
         static $no = 0;
         $no++;
-        
+
         return [
             $no,
             Carbon::parse($setoran->tanggal_setoran)->format('d-m-Y'),
@@ -103,11 +103,11 @@ class PendapatanExport implements FromCollection, WithHeadings, WithTitle, WithM
         $sheet->mergeCells('A5:C5');
         $sheet->setCellValue('A5', 'Total Pendapatan Admin:');
         $sheet->setCellValue('D5', 'Rp ' . number_format($pendapatan->total_pendapatan, 0, ',', '.'));
-        
+
         $sheet->mergeCells('A6:C6');
         $sheet->setCellValue('A6', 'Total Transaksi:');
         $sheet->setCellValue('D6', $pendapatan->total_transaksi);
-        
+
         $lastSetoranDate = $pendapatan->terakhir_setoran ? Carbon::parse($pendapatan->terakhir_setoran)->format('d-m-Y H:i') : '-';
         $sheet->mergeCells('A7:C7');
         $sheet->setCellValue('A7', 'Setoran Terakhir:');
@@ -137,7 +137,7 @@ class PendapatanExport implements FromCollection, WithHeadings, WithTitle, WithM
                     ->getBorders()
                     ->getAllBorders()
                     ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
-                
+
                 // Add bold formatting for summary footer row
                 if ($this->rowCount > 9) { // Only if there's data
                     $lastRow = $this->rowCount;

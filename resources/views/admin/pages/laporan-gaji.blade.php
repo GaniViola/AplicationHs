@@ -148,33 +148,33 @@
         justify-content: center;
         font-weight: bold;
     }
-    
+
     .row-hover:hover {
         background-color: rgba(13, 110, 253, 0.05);
         transition: all 0.2s;
     }
-    
+
     .empty-state {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 2rem;
     }
-    
+
     #gajiTable {
         border-collapse: separate;
         border-spacing: 0;
     }
-    
+
     #gajiTable th {
         font-weight: 600;
         border-top: 0;
     }
-    
+
     .card {
         transition: transform 0.2s;
     }
-    
+
     .card:hover {
         transform: translateY(-2px);
     }
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof sortTable === 'function') {
         sortTable('gajiTable');
     }
-    
+
     // Efek highlight pada baris yang baru diklik
     const rows = document.querySelectorAll('.row-hover');
     rows.forEach(row => {

@@ -1,97 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="favicon.png">
+    <meta charset="utf-8">
+    <link rel="icon" href="{{ asset('images/logohitam.png') }}" type="image/x-icon">
+    <title>@yield('title', 'Home Service')</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-  <meta name="description" content="" />
-  <meta name="keywords" content="bootstrap, bootstrap4" />
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap CSS -->
-  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="{{ asset('css/tiny-slider.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <title>Home Service</title>
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('stocker-1.0.0/lib/animate/animate.min.css') }}" />
+    <link href="{{ asset('stocker-1.0.0/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('stocker-1.0.0/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Custom Styling -->
-  <style>
-    /* Preloader Styles */
-    #preloader {
-        position: fixed;
-        background-color: white;
-        width: 100vw;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        z-index: 99999;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: opacity 0.5s ease;
-    }
 
-    #preloader img {
-        width: 120px;
-        margin-bottom: 20px;
-    }
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('stocker-1.0.0/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    #loading-text {
-        font-family: 'Nunito', sans-serif;
-        font-size: 20px;
-        color: #333;
-        letter-spacing: 1px;
-    }
-
-    body.loaded #preloader {
-        opacity: 0;
-        visibility: hidden;
-    }
-  </style>
-
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('stocker-1.0.0/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
 
-  <!-- Preloader -->
-  <div id="preloader">
-      <img src="{{ asset('images/logo.png') }}" alt="Logo">
-      <div id="loading-text">Loading<span id="dots"></span></div>
-  </div>
+    <!-- Include Topbar -->
+    @include('partials.topbar')
 
-  <!-- Start Header/Navigation -->
-  @include('partials.navbar')
-  <!-- End Header/Navigation -->
+    <!-- Include Navbar -->
+    @include('partials.navbar')
 
-  @yield('content')
+    <!-- Content Section -->
+    @yield('content')
 
-  @include('partials.footer')
+    <!-- Include Footer -->
+    @include('partials.footer')
 
-  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('js/tiny-slider.js') }}"></script>
-  <script src="{{ asset('js/custom.js') }}"></script>
 
-  <!-- Preloader Script -->
-  <script>
-    // Hilangkan preloader setelah halaman dimuat
-    window.addEventListener('load', function () {
-        document.body.classList.add('loaded');
-    });
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-    // Animasi titik-titik di teks loading
-    document.addEventListener('DOMContentLoaded', function () {
-        const dots = document.getElementById('dots');
-        let count = 0;
-        setInterval(() => {
-            count = (count + 1) % 4; // 0 to 3
-            dots.textContent = '.'.repeat(count);
-        }, 500);
-    });
-  </script>
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('stocker-1.0.0/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('stocker-1.0.0/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('stocker-1.0.0/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('stocker-1.0.0/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('stocker-1.0.0/lib/lightbox/js/lightbox.min.js') }}"></script>
+    <script src="{{ asset('stocker-1.0.0/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
+    <!-- Template Javascript -->
+    <script src="{{ asset('stocker-1.0.0/js/main.js') }}"></script>
 </body>
+
 </html>

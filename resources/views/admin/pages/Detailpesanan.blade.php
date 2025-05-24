@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card shadow mb-4">
-    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
         <h4 class="mb-0">Detail Pesanan #{{ $order->id }}</h4>
         <a href="{{ route('orders.index') }}" class="btn btn-sm btn-light">
             <i class="fas fa-arrow-left"></i> Kembali
