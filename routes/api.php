@@ -22,8 +22,9 @@ Route::get('/user', function (Request $request) {
 Route::post('/register', [ApiController::class, 'register']);
 Route::post('login', [ApiController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
-Route::post('/logout', [ApiController::class, 'logout']);
-Route::post('/change-password', [AuthController::class, 'changePassword']);
+    Route::post('/logout', [ApiController::class, 'logout']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
+    Route::post('/upload-profile-photo', [AuthController::class, 'uploadProfilePhoto']);
 
 // Rute untuk mengambil profil pengguna
 Route::get('/profile', [ApiController::class, 'getUserProfile']);
@@ -53,6 +54,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/my-orders', [WorkerOrderController::class, 'index']);
     Route::post('/upload-image', [WorkPhotoController::class, 'store']);
 });
+
+//upload foto profil
+
 
 //history pekerja
 Route::post('/get-worker-history', [OrderController::class, 'getWorkerHistory']);
