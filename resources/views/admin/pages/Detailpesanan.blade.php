@@ -68,7 +68,7 @@
                             <tr>
                                 <td>{{ $detail->service->name ?? 'Layanan tidak ditemukan' }}</td>
                                 <td>Rp{{ number_format($detail->service->price ?? 0, 0, ',', '.') }}</td>
-                                <td>{{ $detail->quantity }}</td> {{-- ✅ pakai quantity, bukan jumlah --}}
+                                <td>{{ $detail->quantity }}</td> 
                                 <td class="text-end">Rp{{ number_format($detail->subtotal, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach
