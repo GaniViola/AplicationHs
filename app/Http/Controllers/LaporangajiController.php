@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class LaporangajiController extends Controller
 {
-        public function laporanGaji(Request $request)
+    public function laporanGaji(Request $request)
     {
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');

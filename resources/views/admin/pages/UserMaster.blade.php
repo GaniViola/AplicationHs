@@ -64,7 +64,7 @@
                                 @if (request('role') == 'worker')
                                     <a href="#" class="btn btn-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#showModal{{ $user->id }}"> Show </a>
                                 @endif
-                                <a href="" class="btn btn-warning btn-sm me-1">Edit</a>
+                                <a href="#" class="btn btn-warning btn-sm me-1" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                                 <form action="{{ route('destroyuser', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin hapus?')">
                                     @csrf
                                     @method('DELETE')
@@ -104,5 +104,31 @@
             </table>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Isi form edit di sini -->
+        <form>
+          <div class="mb-3">
+            <label for="inputName" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="inputName">
+          </div>
+          <!-- Tambahkan input lain sesuai kebutuhan -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary">Simpan</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
