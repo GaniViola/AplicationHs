@@ -62,10 +62,9 @@
             </h5>
             <div class="btn-group">
                 <a href="{{ route('admin.laporan.gaji.pdf', ['start_date' => $startDate, 'end_date' => $endDate]) }}" class="btn btn-sm btn-outline-success">
-                <i class="fas fa-file-excel me-1"></i> Export
+                 <i class="fas fa-file-pdf me-1 text-danger"></i> Export
             </a>
-                <button type="button" class="btn btn-sm btn-outline-success" title="Print">
-                    <i class="fas fa-print me-1"></i> Print
+               
                 </button>
             </div>
         </div>

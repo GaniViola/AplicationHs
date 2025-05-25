@@ -18,7 +18,7 @@
             </button>
             <div class="dropdown">
                 <a href="{{ route('admin.laporan.pekerja.pdf') }}" class="btn btn-sm btn-outline-success">
-                <i class="fas fa-file-excel me-1"></i> Export
+              <i class="fas fa-file-pdf me-1 text-danger"></i> Export
             </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#"><i class="fas fa-file-pdf me-2"></i>PDF</a></li>
