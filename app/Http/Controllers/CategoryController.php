@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class CategoryController extends Controller
 {
@@ -67,10 +68,20 @@ class CategoryController extends Controller
     }
 
     public function destroy($id)
-    {
+{
+    try {
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect('/categories')->with('success', 'Kategori berhasil dihapus!');
+        return redirect()->back()->with('success', 'Kategori berhasil dihapus.');
+    } catch (QueryException $e) {
+        // Cek apakah error-nya karena foreign key constraint
+        if ($e->getCode() == 23000) {
+            return redirect()->back()->with('error', 'Kategori tidak bisa dihapus karena sedang digunakan.');
+        }
+
+        // Tangani error lain
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus kategori.');
     }
+}
 }
