@@ -113,15 +113,15 @@
             </div>
             <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
                 <div class="bg-primary rounded position-relative overflow-hidden">
-                    <img src="stocker-1.0.0/img/about-2.png" class="img-fluid rounded w-100" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/about-2.png') }}" class="img-fluid rounded w-100" alt="">
                     <div style="position: absolute; top: -15px; right: -15px;">
-                        <img src="stocker-1.0.0/img/about-3.png" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/about-3.png') }}" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
                     </div>
                     <div style="position: absolute; top: -20px; left: 10px; transform: rotate(90deg);">
-                        <img src="stocker-1.0.0/img/about-4.png" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/about-4.png') }}" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
                     </div>
                     <div class="rounded-bottom">
-                        <img src="stocker-1.0.0/img/about-5.jpg" class="img-fluid rounded-bottom w-100" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/about-5.jpg') }}" class="img-fluid rounded-bottom w-100" alt="">
                     </div>
                 </div>
             </div>
@@ -129,6 +129,7 @@
     </div>
 </div>
 <!-- About End -->
+
 <!-- Services Start -->
 <div class="container-fluid service pb-5">
     <div class="container pb-5">
@@ -138,78 +139,31 @@
             <p class="mb-0">Dari perbaikan rumah hingga layanan kebersihan profesional, kami menyediakan berbagai solusi untuk menjaga kenyamanan dan keamanan tempat tinggal Anda.</p>
         </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="stocker-1.0.0/img/service-1.jpg" class="img-fluid rounded-top w-100" alt="Image">
-                    </div>
-                    <div class="rounded-bottom p-4">
-                        <a href="#" class="h4 d-inline-block mb-4">Perbaikan Listrik</a>
-                        <p class="mb-4">Layanan teknisi listrik profesional untuk instalasi, perbaikan, dan pengecekan sistem kelistrikan rumah Anda.</p>
-                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="stocker-1.0.0/img/service-2.jpg" class="img-fluid rounded-top w-100" alt="Image">
-                    </div>
-                    <div class="rounded-bottom p-4">
-                        <a href="#" class="h4 d-inline-block mb-4">Service AC</a>
-                        <p class="mb-4">Pembersihan, isi freon, hingga perbaikan unit AC Anda agar selalu dingin dan hemat energi.</p>
-                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="stocker-1.0.0/img/service-3.jpg" class="img-fluid rounded-top w-100" alt="Image">
-                    </div>
-                    <div class="rounded-bottom p-4">
-                        <a href="#" class="h4 d-inline-block mb-4">Pembersihan Rumah</a>
-                        <p class="mb-4">Layanan kebersihan menyeluruh, dari ruangan hingga dapur dan kamar mandi dengan standar higienis tinggi.</p>
-                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
+            @php
+                $services = [
+                    ['img' => 'service-1.jpg', 'title' => 'Perbaikan Listrik', 'desc' => 'Layanan teknisi listrik profesional untuk instalasi, perbaikan, dan pengecekan sistem kelistrikan rumah Anda.'],
+                    ['img' => 'service-2.jpg', 'title' => 'Service AC', 'desc' => 'Pembersihan, isi freon, hingga perbaikan unit AC Anda agar selalu dingin dan hemat energi.'],
+                    ['img' => 'service-3.jpg', 'title' => 'Pembersihan Rumah', 'desc' => 'Layanan kebersihan menyeluruh, dari ruangan hingga dapur dan kamar mandi dengan standar higienis tinggi.'],
+                    ['img' => 'service-4.jpg', 'title' => 'Perbaikan Pipa & Plumbing', 'desc' => 'Atasi kebocoran, saluran mampet, dan instalasi pipa baru dengan cepat dan tepat.'],
+                    ['img' => 'service-5.jpg', 'title' => 'Perawatan Taman', 'desc' => 'Jasa perawatan taman, pemangkasan tanaman, dan desain taman minimalis untuk kenyamanan luar ruangan Anda.'],
+                    ['img' => 'service-6.jpg', 'title' => 'Jasa Bongkar-Pasang', 'desc' => 'Layanan bongkar-pasang perabot, TV, rak, dan instalasi perlengkapan rumah lainnya oleh teknisi berpengalaman.'],
+                ];
+            @endphp
+
+            @foreach ($services as $index => $service)
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="{{ 0.2 + ($index % 3) * 0.2 }}s">
+                    <div class="service-item">
+                        <div class="service-img">
+                            <img src="{{ asset('stocker-1.0.0/img/' . $service['img']) }}" class="img-fluid rounded-top w-100" alt="{{ $service['title'] }}">
+                        </div>
+                        <div class="rounded-bottom p-4">
+                            <a href="#" class="h4 d-inline-block mb-4">{{ $service['title'] }}</a>
+                            <p class="mb-4">{{ $service['desc'] }}</p>
+                            <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="stocker-1.0.0/img/service-4.jpg" class="img-fluid rounded-top w-100" alt="Image">
-                    </div>
-                    <div class="rounded-bottom p-4">
-                        <a href="#" class="h4 d-inline-block mb-4">Perbaikan Pipa & Plumbing</a>
-                        <p class="mb-4">Atasi kebocoran, saluran mampet, dan instalasi pipa baru dengan cepat dan tepat.</p>
-                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="stocker-1.0.0/img/service-5.jpg" class="img-fluid rounded-top w-100" alt="Image">
-                    </div>
-                    <div class="rounded-bottom p-4">
-                        <a href="#" class="h4 d-inline-block mb-4">Perawatan Taman</a>
-                        <p class="mb-4">Jasa perawatan taman, pemangkasan tanaman, dan desain taman minimalis untuk kenyamanan luar ruangan Anda.</p>
-                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="stocker-1.0.0/img/service-6.jpg" class="img-fluid rounded-top w-100" alt="Image">
-                    </div>
-                    <div class="rounded-bottom p-4">
-                        <a href="#" class="h4 d-inline-block mb-4">Jasa Bongkar-Pasang</a>
-                        <p class="mb-4">Layanan bongkar-pasang perabot, TV, rak, dan instalasi perlengkapan rumah lainnya oleh teknisi berpengalaman.</p>
-                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -226,7 +180,7 @@
         <div class="owl-carousel blog-carousel wow fadeInUp" data-wow-delay="0.2s">
             <div class="blog-item p-4">
                 <div class="blog-img mb-4">
-                    <img src="stocker-1.0.0/img/service-1.jpg" class="img-fluid w-100 rounded" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/service-1.jpg') }}" class="img-fluid w-100 rounded" alt="Perawatan AC">
                     <div class="blog-title">
                         <a href="#" class="btn">Perawatan AC</a>
                     </div>
@@ -234,7 +188,7 @@
                 <a href="#" class="h4 d-inline-block mb-3">Tips Merawat AC Agar Awet dan Hemat Energi</a>
                 <p class="mb-4">Pelajari cara sederhana untuk menjaga performa AC di rumah Anda agar tetap dingin dan hemat listrik.</p>
                 <div class="d-flex align-items-center">
-                    <img src="stocker-1.0.0/img/testimonial-1.jpg" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-1.jpg') }}" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="Admin">
                     <div class="ms-3">
                         <h5>Admin</h5>
                         <p class="mb-0">9 Oktober 2025</p>
@@ -244,7 +198,7 @@
 
             <div class="blog-item p-4">
                 <div class="blog-img mb-4">
-                    <img src="stocker-1.0.0/img/service-2.jpg" class="img-fluid w-100 rounded" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/service-2.jpg') }}" class="img-fluid w-100 rounded" alt="Pembersihan Rumah">
                     <div class="blog-title">
                         <a href="#" class="btn">Pembersihan Rumah</a>
                     </div>
@@ -252,7 +206,7 @@
                 <a href="#" class="h4 d-inline-block mb-3">Rahasia Rumah Bersih Bebas Debu</a>
                 <p class="mb-4">Simak panduan praktis membersihkan rumah agar bebas dari debu dan alergen, cocok untuk keluarga dengan anak-anak.</p>
                 <div class="d-flex align-items-center">
-                    <img src="stocker-1.0.0/img/testimonial-2.jpg" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-2.jpg') }}" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="Admin">
                     <div class="ms-3">
                         <h5>Admin</h5>
                         <p class="mb-0">9 Oktober 2025</p>
@@ -262,7 +216,7 @@
 
             <div class="blog-item p-4">
                 <div class="blog-img mb-4">
-                    <img src="stocker-1.0.0/img/service-3.jpg" class="img-fluid w-100 rounded" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/service-3.jpg') }}" class="img-fluid w-100 rounded" alt="Plumbing">
                     <div class="blog-title">
                         <a href="#" class="btn">Plumbing</a>
                     </div>
@@ -270,7 +224,7 @@
                 <a href="#" class="h4 d-inline-block mb-3">Cara Mengatasi Saluran Air Mampet</a>
                 <p class="mb-4">Solusi cepat dan aman untuk mengatasi masalah saluran air di rumah tanpa harus membongkar pipa.</p>
                 <div class="d-flex align-items-center">
-                    <img src="stocker-1.0.0/img/testimonial-3.jpg" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-3.jpg') }}" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="Admin">
                     <div class="ms-3">
                         <h5>Admin</h5>
                         <p class="mb-0">9 Oktober 2025</p>
@@ -280,7 +234,7 @@
 
             <div class="blog-item p-4">
                 <div class="blog-img mb-4">
-                    <img src="stocker-1.0.0/img/service-4.jpg" class="img-fluid w-100 rounded" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/service-4.jpg') }}" class="img-fluid w-100 rounded" alt="Keamanan Rumah">
                     <div class="blog-title">
                         <a href="#" class="btn">Keamanan Rumah</a>
                     </div>
@@ -288,7 +242,7 @@
                 <a href="#" class="h4 d-inline-block mb-3">Panduan Memasang CCTV di Rumah</a>
                 <p class="mb-4">Tingkatkan keamanan rumah Anda dengan memasang CCTV sendiri menggunakan panduan langkah demi langkah ini.</p>
                 <div class="d-flex align-items-center">
-                    <img src="stocker-1.0.0/img/testimonial-1.jpg" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-1.jpg') }}" class="img-fluid rounded-circle" style="width: 60px; height: 60px;" alt="Admin">
                     <div class="ms-3">
                         <h5>Admin</h5>
                         <p class="mb-0">9 Oktober 2025</p>
@@ -364,7 +318,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-1.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-1.jpg') }}" class="img-fluid" alt="Gani Prasetyo">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Gani Prasetyo</h4>
@@ -378,10 +332,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-2.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-2.jpg') }}" class="img-fluid" alt="Farhan Maulana">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Farhan Maulana</h4>
@@ -395,10 +350,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-3.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-3.jpg') }}" class="img-fluid" alt="Alex Rohmatullah">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Alex Rohmatullah</h4>
@@ -412,10 +368,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-4.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-4.jpg') }}" class="img-fluid" alt="Wahyu Ananda">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Wahyu Ananda</h4>
@@ -447,12 +404,12 @@
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-1.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-1.jpg') }}" class="img-fluid" alt="Lina Kurniawati">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Pelayanan sangat cepat dan teknisi AC-nya profesional. Sekarang rumah saya jauh lebih nyaman. Terima kasih!</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Lina Kurniawati</h4>
                         <p class="mb-0">Ibu Rumah Tangga</p>
@@ -465,17 +422,18 @@
                     <i class="fas fa-quote-right fa-2x"></i>
                 </div>
             </div>
+
             <div class="testimonial-item">
                 <div class="testimonial-quote-left">
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-2.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-2.jpg') }}" class="img-fluid" alt="Fajar Ramadhan">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Saya memesan jasa pembersihan rumah, hasilnya luar biasa bersih dan rapi. Layanan yang sangat direkomendasikan!</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Fajar Ramadhan</h4>
                         <p class="mb-0">Karyawan Swasta</p>
@@ -488,17 +446,18 @@
                     <i class="fas fa-quote-right fa-2x"></i>
                 </div>
             </div>
+
             <div class="testimonial-item">
                 <div class="testimonial-quote-left">
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-3.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-3.jpg') }}" class="img-fluid" alt="Dedi Mulyana">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Teknisi listrik datang tepat waktu dan menyelesaikan masalah dengan cepat. Harga juga transparan. Sangat puas!</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Dedi Mulyana</h4>
                         <p class="mb-0">Wirausaha</p>
@@ -511,17 +470,18 @@
                     <i class="fas fa-quote-right fa-2x"></i>
                 </div>
             </div>
+
             <div class="testimonial-item">
                 <div class="testimonial-quote-left">
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-2.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-2.jpg') }}" class="img-fluid" alt="Nurul Aini">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Saya senang dengan kemudahan pemesanan layanan secara online. Customer service juga responsif.</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Nurul Aini</h4>
                         <p class="mb-0">Guru</p>
@@ -548,27 +508,27 @@
         </div>
         <div class="row g-5 align-items-center">
             <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="nav nav-pills bg-light rounded p-5">
-                    <a class="accordion-link p-4 active mb-4" data-bs-toggle="pill" href="#collapseOne">
+                <div class="nav nav-pills bg-light rounded p-5 flex-column">
+                    <a class="accordion-link p-4 active mb-4" data-bs-toggle="pill" href="#collapseOne" role="tab" aria-selected="true" aria-controls="collapseOne">
                         <h5 class="mb-0">Perawatan & Servis AC Profesional</h5>
                     </a>
-                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseTwo">
+                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseTwo" role="tab" aria-selected="false" aria-controls="collapseTwo">
                         <h5 class="mb-0">Layanan Kebersihan Rumah & Apartemen</h5>
                     </a>
-                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseThree">
+                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseThree" role="tab" aria-selected="false" aria-controls="collapseThree">
                         <h5 class="mb-0">Perbaikan Instalasi Listrik & Darurat</h5>
                     </a>
-                    <a class="accordion-link p-4 mb-0" data-bs-toggle="pill" href="#collapseFour">
+                    <a class="accordion-link p-4 mb-0" data-bs-toggle="pill" href="#collapseFour" role="tab" aria-selected="false" aria-controls="collapseFour">
                         <h5 class="mb-0">Pemasangan Peralatan Rumah Tangga</h5>
                     </a>
                 </div>
             </div>
             <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.4s">
                 <div class="tab-content">
-                    <div id="collapseOne" class="tab-pane fade show p-0 active">
+                    <div id="collapseOne" class="tab-pane fade show p-0 active" role="tabpanel" aria-labelledby="collapseOne-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-1.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-1.jpg') }}" class="img-fluid w-100 rounded" alt="Servis AC Cepat & Terpercaya">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Servis AC Cepat & Terpercaya</h1>
@@ -577,10 +537,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapseTwo" class="tab-pane fade show p-0">
+                    <div id="collapseTwo" class="tab-pane fade show p-0" role="tabpanel" aria-labelledby="collapseTwo-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-2.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-2.jpg') }}" class="img-fluid w-100 rounded" alt="Rumah Bersih & Nyaman">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Rumah Bersih & Nyaman</h1>
@@ -589,10 +549,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapseThree" class="tab-pane fade show p-0">
+                    <div id="collapseThree" class="tab-pane fade show p-0" role="tabpanel" aria-labelledby="collapseThree-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-3.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-3.jpg') }}" class="img-fluid w-100 rounded" alt="Layanan Listrik 24 Jam">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Layanan Listrik 24 Jam</h1>
@@ -601,10 +561,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapseFour" class="tab-pane fade show p-0">
+                    <div id="collapseFour" class="tab-pane fade show p-0" role="tabpanel" aria-labelledby="collapseFour-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-4.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-4.jpg') }}" class="img-fluid w-100 rounded" alt="Instalasi Mudah & Aman">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Instalasi Mudah & Aman</h1>
@@ -617,7 +577,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 <!-- Offer End -->
 <!-- FAQs Start -->
 <div class="container-fluid faq-section pb-5">
@@ -706,7 +666,7 @@
             </div>
             <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                 <div class="bg-primary rounded">
-                    <img src="stocker-1.0.0/img/about-2.png" class="img-fluid w-100" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/about-2.png') }}" class="img-fluid w-100" alt="FAQ Image">
                 </div>
             </div>
         </div>

@@ -141,13 +141,13 @@ class AuthController extends Controller
                 $url = Storage::url($path);
 
                 // Update user
-                $user->photo = $url;
+                $user->photo = "storage/".$path;
                 $user->save();
 
                 return response()->json([
                     'success' => true,
                     'message' => 'Foto profil berhasil diupload',
-                    'photo_url' => asset($url)
+                    'photo_url' => asset("storage/".$path)
                 ]);
             }
 

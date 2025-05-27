@@ -11,7 +11,6 @@
         </ol>    
     </div>
 </div>
-
 <!-- Testimonial Start -->
 <div class="container-fluid testimonial pb-5">
     <div class="container pb-5">
@@ -26,12 +25,12 @@
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-1.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-1.jpg') }}" class="img-fluid" alt="Lina Kurniawati">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Pelayanan sangat cepat dan teknisi AC-nya profesional. Sekarang rumah saya jauh lebih nyaman. Terima kasih!</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Lina Kurniawati</h4>
                         <p class="mb-0">Ibu Rumah Tangga</p>
@@ -44,17 +43,18 @@
                     <i class="fas fa-quote-right fa-2x"></i>
                 </div>
             </div>
+
             <div class="testimonial-item">
                 <div class="testimonial-quote-left">
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-2.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-2.jpg') }}" class="img-fluid" alt="Fajar Ramadhan">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Saya memesan jasa pembersihan rumah, hasilnya luar biasa bersih dan rapi. Layanan yang sangat direkomendasikan!</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Fajar Ramadhan</h4>
                         <p class="mb-0">Karyawan Swasta</p>
@@ -67,17 +67,18 @@
                     <i class="fas fa-quote-right fa-2x"></i>
                 </div>
             </div>
+
             <div class="testimonial-item">
                 <div class="testimonial-quote-left">
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-3.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-3.jpg') }}" class="img-fluid" alt="Dedi Mulyana">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Teknisi listrik datang tepat waktu dan menyelesaikan masalah dengan cepat. Harga juga transparan. Sangat puas!</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Dedi Mulyana</h4>
                         <p class="mb-0">Wirausaha</p>
@@ -90,17 +91,18 @@
                     <i class="fas fa-quote-right fa-2x"></i>
                 </div>
             </div>
+
             <div class="testimonial-item">
                 <div class="testimonial-quote-left">
                     <i class="fas fa-quote-left fa-2x"></i>
                 </div>
                 <div class="testimonial-img">
-                    <img src="stocker-1.0.0/img/testimonial-2.jpg" class="img-fluid" alt="Image">
+                    <img src="{{ asset('stocker-1.0.0/img/testimonial-2.jpg') }}" class="img-fluid" alt="Nurul Aini">
                 </div>
                 <div class="testimonial-text">
                     <p class="mb-0">Saya senang dengan kemudahan pemesanan layanan secara online. Customer service juga responsif.</p>
                 </div>
-                <div class="testimonial-title">
+                <div class="testimonial-title d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-0">Nurul Aini</h4>
                         <p class="mb-0">Guru</p>
@@ -117,4 +119,5 @@
     </div>
 </div>
 <!-- Testimonial End -->
+
 @endsection

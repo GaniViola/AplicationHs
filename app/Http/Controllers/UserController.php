@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     // Create account
-    public function CreateAccount(Request $request) {
+    public function store(Request $request) {
 
         $validated = $request->validate([
             'username' => 'required|string|max:255',

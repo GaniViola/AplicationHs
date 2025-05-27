@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PendapatanExport;
 use Barryvdh\DomPDF\Facade\Pdf;
+
 class LaporanpendapatanController extends Controller
 {
         public function laporanPendapatan(Request $request)
@@ -31,7 +32,7 @@ class LaporanpendapatanController extends Controller
         }
 
         $pendapatan = $query->first();
-
+ 
         // Ambil semua data setorannya juga (untuk tabel detail)
         $setorans = Setoran::with(['order.customer', 'worker'])
             ->where('status_setoran', 'selesai');

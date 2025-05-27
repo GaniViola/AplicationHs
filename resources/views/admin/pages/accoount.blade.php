@@ -12,7 +12,7 @@
             </div>
           @endif
           <h4 class="mb-4">Create Account</h4>
-          <form action="/CreateAccount" method="POST" class="row g-3" enctype="multipart/form-data" id="accountForm">
+          <form action="{{ Route('CreateAccount.store') }}" method="POST" class="row g-3" enctype="multipart/form-data" id="accountForm">
             @csrf
             <div class="col-md-6">
               <label for="InputUsername" class="form-label">Username</label>

@@ -22,27 +22,27 @@
         </div>
         <div class="row g-5 align-items-center">
             <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="nav nav-pills bg-light rounded p-5">
-                    <a class="accordion-link p-4 active mb-4" data-bs-toggle="pill" href="#collapseOne">
+                <div class="nav nav-pills bg-light rounded p-5 flex-column">
+                    <a class="accordion-link p-4 active mb-4" data-bs-toggle="pill" href="#collapseOne" role="tab" aria-selected="true" aria-controls="collapseOne">
                         <h5 class="mb-0">Perawatan & Servis AC Profesional</h5>
                     </a>
-                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseTwo">
+                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseTwo" role="tab" aria-selected="false" aria-controls="collapseTwo">
                         <h5 class="mb-0">Layanan Kebersihan Rumah & Apartemen</h5>
                     </a>
-                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseThree">
+                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseThree" role="tab" aria-selected="false" aria-controls="collapseThree">
                         <h5 class="mb-0">Perbaikan Instalasi Listrik & Darurat</h5>
                     </a>
-                    <a class="accordion-link p-4 mb-0" data-bs-toggle="pill" href="#collapseFour">
+                    <a class="accordion-link p-4 mb-0" data-bs-toggle="pill" href="#collapseFour" role="tab" aria-selected="false" aria-controls="collapseFour">
                         <h5 class="mb-0">Pemasangan Peralatan Rumah Tangga</h5>
                     </a>
                 </div>
             </div>
             <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.4s">
                 <div class="tab-content">
-                    <div id="collapseOne" class="tab-pane fade show p-0 active">
+                    <div id="collapseOne" class="tab-pane fade show p-0 active" role="tabpanel" aria-labelledby="collapseOne-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-1.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-1.jpg') }}" class="img-fluid w-100 rounded" alt="Servis AC Cepat & Terpercaya">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Servis AC Cepat & Terpercaya</h1>
@@ -51,10 +51,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapseTwo" class="tab-pane fade show p-0">
+                    <div id="collapseTwo" class="tab-pane fade show p-0" role="tabpanel" aria-labelledby="collapseTwo-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-2.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-2.jpg') }}" class="img-fluid w-100 rounded" alt="Rumah Bersih & Nyaman">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Rumah Bersih & Nyaman</h1>
@@ -63,10 +63,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapseThree" class="tab-pane fade show p-0">
+                    <div id="collapseThree" class="tab-pane fade show p-0" role="tabpanel" aria-labelledby="collapseThree-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-3.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-3.jpg') }}" class="img-fluid w-100 rounded" alt="Layanan Listrik 24 Jam">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Layanan Listrik 24 Jam</h1>
@@ -75,10 +75,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="collapseFour" class="tab-pane fade show p-0">
+                    <div id="collapseFour" class="tab-pane fade show p-0" role="tabpanel" aria-labelledby="collapseFour-tab">
                         <div class="row g-4">
                             <div class="col-md-7">
-                                <img src="stocker-1.0.0/img/offer-4.jpg" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('stocker-1.0.0/img/offer-4.jpg') }}" class="img-fluid w-100 rounded" alt="Instalasi Mudah & Aman">
                             </div>
                             <div class="col-md-5">
                                 <h1 class="display-5 mb-4">Instalasi Mudah & Aman</h1>
@@ -91,6 +91,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 <!-- Offer End -->
+
 @endsection

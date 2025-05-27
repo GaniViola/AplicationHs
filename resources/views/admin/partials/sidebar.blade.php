@@ -5,7 +5,8 @@
     <a class="sidebar-brand" href="index.html">
         <div class="brand-container">
             <div class="brand-logo">
-                <img src="/images/logopolosputih.png" alt="HomeService Logo">
+              <img src="{{ asset('images/logopolosputih.png') }}" alt="HomeService Logo">
+
             </div>
             <div class="brand-text">
                 <span class="brand-name">HOMESERVICE</span>
@@ -284,7 +285,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="/dashboard">
+        <a class="nav-link" href="{{ route('dashboard.admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -300,7 +301,7 @@
 
     <!-- Nav Item - Pesanan Masuk -->
     <li class="nav-item">
-        <a class="nav-link" href="/orders">
+        <a class="nav-link" href="{{ route('orders.index') }}">
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Pesanan</span>
         </a>
@@ -308,7 +309,7 @@
 
     <!-- Nav Item - Kategori Layanan -->
     <li class="nav-item">
-        <a class="nav-link" href="/categories">
+        <a class="nav-link" href="{{ route('categories.index') }}">
             <i class="fas fa-fw fa-list"></i>
             <span>Kategori Layanan</span>
         </a>
@@ -316,7 +317,7 @@
 
     <!-- Nav Item - Jenis Layanan -->
     <li class="nav-item">
-        <a class="nav-link" href="/services">
+        <a class="nav-link" href="{{ route('services.index') }}">
             <i class="fas fa-fw fa-cogs"></i>
             <span>Jenis Layanan</span>
         </a>
@@ -340,7 +341,7 @@
 
     <!-- Nav Item - Buat Akun Baru -->
     <li class="nav-item">
-        <a class="nav-link" href="/CreateAccount">
+        <a class="nav-link" href="{{ route('CreateAccount.index') }}">
             <i class="fas fa-fw fa-user-plus"></i>
             <span>Buat Akun</span>
         </a>
@@ -348,7 +349,7 @@
 
     <!-- Nav Item - Data Pekerja -->
     <li class="nav-item">
-        <a class="nav-link" href="/UserMaster?role=admin">
+        <a class="nav-link" href="{{ route('user.master', ['role' => 'admin']) }}">
             <i class="fas fa-fw fa-user-cog"></i>
             <span>Data User</span>
         </a>
@@ -356,7 +357,7 @@
 
     <!-- Nav Item - Data Pelanggan -->
     <li class="nav-item">
-        <a class="nav-link" href="/DataCustomer">
+        <a class="nav-link" href="{{ route('admin.customers') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Data Pelanggan</span>
         </a>
@@ -380,7 +381,7 @@
 
     <!-- Nav Item - Kinerja Pekerja -->
     <li class="nav-item">
-       <a class="nav-link" href="/admin/laporan-pekerja">
+       <a class="nav-link" href="{{ route('admin.laporan.pekerja') }}">
     <i class="fas fa-fw fa-chart-line"></i>
     <span>Laporan Pekerja</span>
 </a>

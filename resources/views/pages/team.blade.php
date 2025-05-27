@@ -11,7 +11,6 @@
         </ol>    
     </div>
 </div>
-
 <!-- Team Start -->
 <div class="container-fluid team pb-5">
     <div class="container pb-5">
@@ -24,7 +23,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-1.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-1.jpg') }}" class="img-fluid" alt="Gani Prasetyo">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Gani Prasetyo</h4>
@@ -38,10 +37,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-2.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-2.jpg') }}" class="img-fluid" alt="Farhan Maulana">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Farhan Maulana</h4>
@@ -55,13 +55,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-3.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-3.jpg') }}" class="img-fluid" alt="Alex Rohmatullah">
                     </div>
                     <div class="team-title">
-                        <h4 class="mb-0">alex Rohmatullah</h4>
+                        <h4 class="mb-0">Alex Rohmatullah</h4>
                         <p class="mb-0">Teknisi AC</p>
                     </div>
                     <div class="team-icon">
@@ -72,10 +73,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="team-item">
                     <div class="team-img">
-                        <img src="stocker-1.0.0/img/team-4.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/team-4.jpg') }}" class="img-fluid" alt="Wahyu Ananda">
                     </div>
                     <div class="team-title">
                         <h4 class="mb-0">Wahyu Ananda</h4>
@@ -93,4 +95,5 @@
     </div>
 </div>
 <!-- Team End -->
+
 @endsection

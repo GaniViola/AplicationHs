@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\orders;
+use App\Models\Orders;
 
 
 class WorkPhoto extends Model

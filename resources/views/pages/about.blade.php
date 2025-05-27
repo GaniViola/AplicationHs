@@ -57,15 +57,15 @@
             </div>
             <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
                 <div class="bg-primary rounded position-relative overflow-hidden">
-                    <img src="stocker-1.0.0/img/about-2.png" class="img-fluid rounded w-100" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/about-2.png') }}" class="img-fluid rounded w-100" alt="">
                     <div style="position: absolute; top: -15px; right: -15px;">
-                        <img src="stocker-1.0.0/img/about-3.png" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/about-3.png') }}" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
                     </div>
                     <div style="position: absolute; top: -20px; left: 10px; transform: rotate(90deg);">
-                        <img src="stocker-1.0.0/img/about-4.png" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/about-4.png') }}" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
                     </div>
                     <div class="rounded-bottom">
-                        <img src="stocker-1.0.0/img/about-5.jpg" class="img-fluid rounded-bottom w-100" alt="">
+                        <img src="{{ asset('stocker-1.0.0/img/about-5.jpg') }}" class="img-fluid rounded-bottom w-100" alt="">
                     </div>
                 </div>
             </div>
@@ -73,4 +73,5 @@
     </div>
 </div>
 <!-- About End -->
+
 @endsection

@@ -14,8 +14,8 @@
     
     <div class="d-flex justify-content-between align-items-center px-4 pb-2">
         <div class="btn-group mb-3" role="group" aria-label="Filter Role">
-            <a href="/UserMaster?role=admin" class="btn btn-outline-success {{ request('role') == 'admin' ? 'active' : '' }}">Admin</a>
-            <a href="/UserMaster?role=worker" class="btn btn-outline-success {{ request('role') == 'worker' ? 'active' : '' }}">Worker</a>
+            <a href="{{ route('user.master', ['role' => 'admin']) }}" class="btn btn-outline-success {{ request('role') == 'admin' ? 'active' : '' }}">Admin</a>
+            <a href="{{ route('user.master', ['role' => 'worker']) }}" class="btn btn-outline-success {{ request('role') == 'worker' ? 'active' : '' }}">Worker</a>
         </div>
         <div>
             <form action="/UserMaster" method="GET">

@@ -99,11 +99,12 @@
             </div>
             <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                 <div class="bg-primary rounded">
-                    <img src="stocker-1.0.0/img/about-2.png" class="img-fluid w-100" alt="">
+                    <img src="{{ asset('stocker-1.0.0/img/about-2.png') }}" class="img-fluid w-100" alt="FAQ Image">
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- FAQs End -->
+
 @endsection

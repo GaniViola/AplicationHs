@@ -65,7 +65,7 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
 
     Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
         Route::get('/', 'index')->name('index');           // admin.setoran.index
@@ -84,7 +84,7 @@ Route::middleware('auth')->group(function(){
     // Route untuk export Excel
     Route::get('/laporan/pendapatan/excel', [SetoranController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
 
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    // Route::get('/dashboard', [DashboardController::class, 'index']);
    // ✅ ROUTE SETORAN ADMIN
    Route::prefix('admin/setoran')->name('admin.setoran.')->controller(SetoranController::class)->group(function () {
     Route::get('/', 'index')->name('index');           // admin.setoran.index
@@ -103,7 +103,7 @@ Route::middleware('auth')->group(function(){
     // Route untuk export Excel
     Route::get('/laporan/pendapatan/excel', [LaporanpendapatanController::class, 'exportExcel'])->name('admin.pages.pendapatan.excel');
     // category
-    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
@@ -115,8 +115,9 @@ Route::middleware('auth')->group(function(){
     Route::patch('/DataCustomer/{id}/activate', [UserController::class, 'activateCustomer'])->name('admin.customers.activate');
     Route::post('/DataCustomer/bulk-action', [UserController::class, 'bulkAction'])->name('admin.customers.bulk');
     //create account
-    Route::get('/CreateAccount', [UserController::class, 'index']);
-    Route::post('/CreateAccount', [UserController::class, 'CreateAccount']);
+     Route::resource('/CreateAccount', UserController::class);
+    // Route::get('/CreateAccount', [UserController::class, 'index'])->name('createacount.index');
+    // Route::post('/CreateAccount', [UserController::class, 'CreateAccount']);
     // pesanan masuk
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
@@ -127,7 +128,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/orders/{order}/details', [OrderController::class, 'getOrderDetails'])->name('orders.details');
     Route::post('/orders/assign-worker', [OrderController::class, 'assignWorker'])->name('orders.assignWorker');
     // lainnya
-    Route::get('/UserMaster', [UserController::class, 'ShowUserMaster']);
+    Route::get('/UserMaster', [UserController::class, 'ShowUserMaster'])->name('user.master');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('destroyuser');
     //laporan foto pekerja
    Route::get('/admin/laporan-pekerja', [LaporanpekerjaController::class, 'index'])->name('admin.laporan.pekerja');
