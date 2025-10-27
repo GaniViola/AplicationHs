@@ -105,7 +105,7 @@
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Order ID</th>
-                            <th>Customer</th>
+                            <th>pelanggan</th>
                             <th>Pekerja</th>
                             <th>Jumlah Setoran</th>
                             <th>Untuk Admin</th>

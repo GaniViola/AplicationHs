@@ -61,7 +61,7 @@
     <!-- Main Table -->
     <div class="card shadow mb-4">
         <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-success">Data Laporan Pekerja</h6>
+            <h6 class="m-0 font-weight-bold text-success">Data Laporan Pegawai</h6>
             <small class="text-muted">Menampilkan <span id="showingStart">0</span> - <span id="showingEnd">0</span> dari <span id="totalEntries">{{ count($workPhotos) }}</span> data</small>
         </div>
         <div class="card-body p-0">

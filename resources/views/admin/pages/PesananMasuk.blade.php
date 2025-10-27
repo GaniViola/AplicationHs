@@ -87,7 +87,7 @@
                             <td>
                                 <div class="mb-2">
                                     <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-info mb-1">
-                                        <i class="fas fa-eye"></i> Lihat
+                                        <i class="fas fa-eye"></i> View
                                     </a>
 
                                     @if($order->status === 'pending')

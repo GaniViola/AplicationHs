@@ -81,9 +81,25 @@
                 </tbody>
             </table>
 
-            <!-- Pagination -->
+            <!-- Pagination Links -->
             <div class="d-flex justify-content-center">
-                {{ $services->links() }}
+                <ul class="pagination pagination-sm">
+                    <li class="page-item {{ $services->onFirstPage() ? 'disabled' : '' }}">
+                        <a class="page-link" href="{{ $services->previousPageUrl() }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for ($i = 1; $i <= $services->lastPage(); $i++)
+                        <li class="page-item {{ $i == $services->currentPage() ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $services->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="page-item {{ $services->hasMorePages() ? '' : 'disabled' }}">
+                        <a class="page-link" href="{{ $services->nextPageUrl() }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -223,29 +239,6 @@
 
 @section('css')
 <style>
-    .pagination {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: white;
-    }
-
-    .pagination .page-item:hover .page-link {
-        background-color: #0056b3;
-        border-color: #0056b3;
-        color: white;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background-color: #e9ecef;
-        border-color: #e9ecef;
-        color: #6c757d;
-    }
-
     .table-responsive {
         overflow-x: auto;
     }
@@ -263,6 +256,39 @@
 
     td, th {
         vertical-align: middle;
+    }
+
+    /* Pagination styling sesuai dengan categories */
+    .pagination {
+        margin: 0;
+    }
+    
+    .page-item.active .page-link {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: white;
+    }
+    
+    .page-link {
+        color: #28a745;
+    }
+    
+    .page-link:hover {
+        color: #1e7e34;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+    
+    .page-item.active .page-link:hover {
+        background-color: #1e7e34;
+        border-color: #1e7e34;
+        color: white;
+    }
+    
+    .page-item.disabled .page-link {
+        color: #6c757d;
+        background-color: #fff;
+        border-color: #dee2e6;
     }
 </style>
 @endsection

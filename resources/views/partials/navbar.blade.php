@@ -29,7 +29,7 @@
                         <a href="{{ route('faq') }}" class="dropdown-item">FAQs</a>
                     </div>
                 </div>
-
+                
                 <a href="{{ route('contact') }}" class="nav-item nav-link {{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">Contact Us</a>
             </div>
         </div>
