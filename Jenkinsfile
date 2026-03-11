@@ -19,8 +19,8 @@ node {
         docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
             sshagent(credentials: ['ssh-prod']) {
                 sh 'mkdir -p ~/.ssh'
-                sh 'ssh-keyscan -H 76.223.54.146 > ~/.ssh/known_hosts'
-                sh "rsync -rav --delete ./ ubuntu@76.223.54.146:/home/ubuntu/prod.kelasdevops.xyz/ --exclude=.env --exclude=storage --exclude=.git"
+                sh 'ssh-keyscan -H 13.248.169.48 > ~/.ssh/known_hosts'
+                sh "rsync -rav --delete ./ ubuntu@13.248.169.48:/home/ubuntu/prod.kelasdevops.xyz/ --exclude=.env --exclude=storage --exclude=.git"
             }
         }
     }
