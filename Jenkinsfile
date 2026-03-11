@@ -1,9 +1,12 @@
 node {
+
     checkout scm
 
     stage("Build") {
         docker.image('php:8.2-cli').inside('-u root') {
-            // Baris ini harus UTUH sampai selesai
+
+            sh 'git config --global --add safe.directory /var/jenkins_home/workspace/laravel-dev'
+
             sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer'
             sh 'apt-get update && apt-get install -y git unzip libzip-dev && docker-php-ext-install zip'
             sh 'composer install --ignore-platform-req=ext-gd'
@@ -18,12 +21,13 @@ node {
 
     stage("Deploy") {
         docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
+
             sshagent(credentials: ['ssh-prod']) {
+
                 sh 'mkdir -p ~/.ssh'
                 sh 'ssh-keyscan -H 13.248.169.48 >> ~/.ssh/known_hosts'
-                
-                // JANGAN ADA ENTER DI TENGAH PERINTAH INI
-                sh "rsync -rav --delete ./ ubuntu@13.248.169.48:/home/ubuntu/prod.kelasdevops.xyz/ --exclude={.env,storage,.git}"
+
+                sh 'rsync -rav --delete ./ ubuntu@13.248.169.48:/home/ubuntu/prod.kelasdevops.xyz/ --exclude={.env,storage,.git}'
             }
         }
     }
