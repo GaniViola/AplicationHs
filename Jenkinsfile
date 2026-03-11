@@ -19,10 +19,9 @@ node {
         docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
             sshagent(credentials: ['ssh-prod']) {
                 sh 'mkdir -p ~/.ssh'
-                // PENTING: Gunakan tanda >> untuk menyimpan hasil scan
+                // Menyimpan kunci host agar rsync tidak gagal verifikasi
                 sh 'ssh-keyscan -H 13.248.169.48 >> ~/.ssh/known_hosts'
-                
-                // Tambahkan perintah rsync di bawahnya
+                // Perintah rsync lengkap ke server tujuan
                 sh 'rsync -rav --delete ./ ubuntu@13.248.169.48:/home/ubuntu/prod.kelasdevops.xyz/ --exclude=.env --exclude=storage --exclude=.git'
             }
         }
