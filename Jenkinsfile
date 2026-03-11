@@ -20,7 +20,7 @@ node {
 
     stage("Deploy") {
         docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
-            sshagent(credentials: ['ubuntu']) { // <-- samakan dengan nama credential di Jenkins
+            sshagent(credentials: ['ssh-prod']) { // <-- samakan dengan nama credential di Jenkins
                 sh 'mkdir -p ~/.ssh && chmod 700 ~/.ssh'
                 sh 'ssh-keyscan -H 13.248.169.48 >> ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts'
                 sh '''
