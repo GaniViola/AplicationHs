@@ -2,11 +2,12 @@ node {
     checkout scm
 
     stage("Build") {
-        docker.image('composer:2').inside('-u root') {
-            sh 'rm composer.lock'
-            sh 'composer install'
-        }
+    docker.image('php:8.2-cli').inside('-u root') {
+        sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer'
+        sh 'apt-get update && apt-get install -y git unzip libzip-dev && docker-php-ext-install zip'
+        sh 'composer install --ignore-platform-req=ext-gd'
     }
+}
 
     stage("Testing") {
         docker.image('ubuntu').inside('-u root') {
