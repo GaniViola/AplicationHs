@@ -1,0 +1,16 @@
+---
+- name: Create hosts file
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add dev host
+      lineinfile:
+        path: /etc/hosts
+        line: "dev.kelasdevops.xyz"
+        state: present
+
+    - name: Add prod host
+      lineinfile:
+        path: /etc/hosts
+        line: "prod.kelasdevops.xyz"
+        state: present

@@ -1,0 +1,5 @@
+[dev]
+76.223.54.146 ansible_user=ubuntu ansible_ssh_private_key_file=~/prod
+
+[prod]
+13.248.169.48 ansible_user=ubuntu ansible_ssh_private_key_file=~/prod
