@@ -19,18 +19,10 @@ node {
     }
 
     stage("Deploy") {
-        docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
-            sshagent(credentials: ['ssh-prod']) { // <-- samakan dengan nama credential di Jenkins
-                sh 'mkdir -p ~/.ssh && chmod 700 ~/.ssh'
-                sh 'ssh-keyscan -H 13.248.169.48 >> ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts'
-                sh '''
-                    rsync -avz --delete \
-                        --exclude='.env' \
-                        --exclude='storage' \
-                        --exclude='.git' \
-                        ./ ubuntu@13.248.169.48:/home/ubuntu/prod.kelasdevops.xyz/
-                '''
-            }
-        }
+    docker.image('agung3wi/alpine-rsync:1.1').inside('-u root') {
+        sh 'echo "Deploy simulation - server not available"'
+        sh 'echo "Would deploy to: $PROD_HOST"'
     }
+}
+}
 }
