@@ -4,16 +4,20 @@ node {
 
     stage("Build") {
         docker.image('php:8.2-cli').inside('-u root') {
-            // Fix error 'dubious ownership' agar Git lancar
+            // Kita install git dulu, baru jalankan config-nya
+            sh 'apt-get update && apt-get install -y git unzip libzip-dev'
+            
+            // Sekarang perintah git sudah ada, jadi tidak akan 'not found' lagi
             sh 'git config --global --add safe.directory /var/jenkins_home/workspace/laravel-dev'
             
+            sh 'docker-php-ext-install zip'
             sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer'
-            sh 'apt-get update && apt-get install -y git unzip libzip-dev && docker-php-ext-install zip'
             
             // Install dependencies Laravel
             sh 'composer install --ignore-platform-req=ext-gd'
         }
     }
+
 
     stage("Testing") {
         docker.image('ubuntu').inside('-u root') {
